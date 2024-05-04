@@ -12,7 +12,7 @@ parts:
 - caption: Documentos adicionales
   chapters:
     - file: documentacion.md
-#    - file: t/2024-1/IIQ2043-T2
+    - file: t/2024-1/IIQ2043-T2
 #  - caption: Ayudantías
 #  chapters:
 #  - file: a/2024-1/intro
