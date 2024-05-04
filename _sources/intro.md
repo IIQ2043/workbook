@@ -5,6 +5,6 @@ En esta plataforma, compilaremos ejercicios pasados del curso de ficoquímica, c
 Pueden utilizar el siguiente índice para buscar ejercicios específicos, y visualizar de mejor manera el contenido de la página.
 
 ```{tableofcontents}
-```
+``` 
 
 
