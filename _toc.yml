@@ -9,10 +9,10 @@ parts:
     - file: t/2024-1/intro.md
       sections:
       - file: t/2024-1/IIQ2043-T1.ipynb
+      - file: t/2024-1/IIQ2043-T2.ipynb
 - caption: Documentos adicionales
   chapters:
     - file: documentacion.md
-    - file: t/2024-1/IIQ2043-T2
 #  - caption: Ayudantías
 #  chapters:
 #  - file: a/2024-1/intro
