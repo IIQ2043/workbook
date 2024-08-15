@@ -5,14 +5,37 @@ filters:
   - shinylive
 ---
 
-## Ecuaciones fundamentales termodinámicas
+## Motivación: Primera ley de la termodinámica
 
-Durante el curso se presentan distintas relaciones termodinámicas
+Uno de los principales intereses de la termodinámica es cuantificar y comprender las variaciones asociadas a la energía interna de un sistema. Por este motivo, la **primera ley de la termodinámica** es uno de los primeros temas que aparecen en cursos introductorios. El objetivo de la primera ley es entender cómo la energía interna de un sistema se transforma en otras formas de energía (calor, trabajo, energía cinética, etc.). Para conseguir esto último, utilizamos balances de energía que modelan el comportamiento de un sistema específico (Abierto o cerrado).
 
 ::::: {layout="[0.7, 0.3]"}
 
 ::::{#firstcol}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla semper non dolor eget viverra. Nulla blandit tellus lorem, et ullamcorper ante varius ut. Fusce aliquam tortor quis feugiat sodales. Sed ac diam at tortor accumsan pellentesque vitae sed mauris. Curabitur vulputate felis vitae fermentum gravida. Nunc malesuada ultrices massa eget interdum. Aenean in nunc nulla. Integer dolor turpis, rhoncus vel erat eget, ultrices tempor nunc. Vestibulum a risus auctor, suscipit neque eget, iaculis elit. Praesent fermentum nisl gravida purus viverra molestie. Sed porttitor libero est, et pretium ipsum pharetra eu. Ut vitae varius nisl. Donec egestas tellus eget lectus posuere lobortis. Pellentesque at sem lobortis, porttitor libero sed, laoreet felis. 
+Como habrán visto en el curso o en otros cursos de termodinámica, la expresión de la primera ley generalizada se ve de la siguiente manera.
+$$
+d(U + \frac{Mv^2}{2} + Mgh) = \delta W + \delta Q + \sum_{in} \delta m_{in}\left( \hat{H}_{in} + \frac{v^2_{in}}{2} + gh_{in} \right)
+$$
+$$
+- \sum_{out} \delta m_{out}\left( \hat{H}_{out} + \frac{v^2_{out}}{2} + gh_{out} \right)
+$$
+
+Para más información sobre cómo se llega a esta expresión y lo que representa cada parte del balance, revisar las clases o el capítulo 3.3 del libro <a href="https://bmdigitales-bibliotecas-uc-cl.pucdechile.idm.oclc.org/html5/FUNDAMENTALS%20OF%20CHEMICAL%20ENGINEERING%20THERMODYNAMICS%20K.%20D.%20DAHM/">Fundamentals of Chemical Engineering Thermodynamics</a>.
+
+::: {.callout-tip collapse="true"}
+## Información sobre la nomenclatura
+
+* $U$: Energía interna ($\text{J}$)
+* $M$: Masa total en el sistema ($\text{kg}$)
+* $v$: Velocidad ($\text{m}\cdot\text{s}^{-1}$)
+* $h$: Altura ($\text{m}$)
+* $\hat{H}$ Entalpía específica ($\text{J}\cdot\text{kg}^{-1}$)
+* $\delta m_{in}$ o $\delta m_{out}$: Masa que entra o sale del sistema ($\text{kg}$)
+* $W$: Trabajo que entra al sistema. Puede ser de eje, expansión y/o compresión ($\text{J}$)
+* $Q$: Calor que entra al sistema ($\text{J}$)
+
+:::
+
 ::::
 
 ::::{#secondcol}
@@ -26,10 +49,74 @@ Volúmen: $V~\text{(m}^3\text{)}$
 
 Volúmen másico: $\hat{V}~\text{(m}^3\cdot\text{kg}^{-1}\text{)}$
 
-Volúmen másico: $\underline{V}~\text{(m}^3\cdot\text{mol}^{-1}\text{)}$
+Volúmen molar: $\underline{V}~\text{(m}^3\cdot\text{mol}^{-1}\text{)}$
 
 :::
 
 ::::
 
 :::::
+
+Dicha ecuación puede ser encontrada en función de variaciones en el tiempo (es decir, en su forma **transiente**).
+
+$$
+\frac{d}{dt}\left[M\left(\hat{U} + \frac{v^2}{2} + gh\right)\right] = \dot{W} + \dot{Q} + \sum_{in} \dot{m}_{in}\left( \hat{H}_{in} + \frac{v^2_{in}}{2} + gh_{in} \right) - \sum_{out} \dot{m}_{out}\left( \hat{H}_{out} + \frac{v^2_{out}}{2} + gh_{out} \right)
+$$
+
+No obstante, la forma más común de la primera ley es para sistemas **no transientes y cerrados**. Expresión que se obtiene a partir de la ecuación generalizada.
+
+$$
+\delta U = \delta W + \delta Q
+$$
+
+Como se puede observar, existen distintas maneras de describir los cambios de energía en un sistema. Es nuestra labor definir correctamente los fenómenos que ocurren en la situación que escojamos. En ingeniería, los sistemas de interés pueden ser una bomba, una válvula, un calefactor, entre otros. Para predecir y rectificar que un equipo o sistema funcione correctamente, debemos ser capaces de evaluar el sistema y medirlo. Independientemente del sistema y de cómo se desee representar la primera ley de la termodinámica, **no es posible medir la energía interna $U$**. Por lo tanto, existe una necesidad de escribir las propiedades termodinámicas en función de unidades medibles: presión ($P$), volumen ($V$) y temperatura ($T$).
+
+## Propiedades de los compuestos puros
+
+::: {.callout-warning}
+## Imporante
+
+Para esta sección, se asume que el alumno comprende conceptos como: Las fases de un compuesto; el punto crítico y las condiciones supercríticas; diagramas *P-V-T*; conocimientos básicos sobre la entalpía y entropía. En caso de querer reforzar algún concepto mencionado, se recomienda leer la sección 2.2 del libro <a href="https://bmdigitales-bibliotecas-uc-cl.pucdechile.idm.oclc.org/html5/FUNDAMENTALS%20OF%20CHEMICAL%20ENGINEERING%20THERMODYNAMICS%20K.%20D.%20DAHM/">Fundamentals of Chemical Engineering Thermodynamics</a> (páginas 49-57).
+
+:::
+
+Como habrán visto en el curso, las **propiedades de estado** son aquellas características de la condición en la que se encuentra un compuesto o sistema. Sin importar el cómo se llego a esa condición, las propiedades de estado siempre serán las mismas para dicho compuesto o sistema. Eso significa que la energía interna del agua a $25~^\circ\text{C}$ y 1 atmósfera será siempre la misma idependientemente de la manera en que se llegó a la condición, siempre y cuando los sistemas sean iguales.
+
+Existen propiedades de estado que son de suma importancia para el estudio de la termodinámica. Las ecuaciones que las describen se denominan **ecuaciones fundamentales de la termodinámica**.
+
+| Propiedad              | Ecuación        | Variables naturales |
+|------------------------|-----------------|---------------------|
+| Energía interna        | $dU = TdS-PdV$  | $U(S,~V)$           |
+| Energía de Helmholtz   | $dA = SdT-PdV$  | $A(T,~V)$           |
+| Entalpía               | $dH = TdS+VdP$  | $H(S,~P)$           |
+| Energía libre de Gibbs | $dG = -SdT+VdP$ | $G(T,~P)$           |
+
+A partir de estas ecuaciones, las relaciones de Maxwell y las herramientas de cálculo que se aprenden en el curso, se pueden describir los cambios en las propiedades de un estado a otro (para compuestos puros). De esta forma, podemos cumplir con nuestro objetivo de relacionar la energía con propiedades medibles.
+
+::: {.callout-tip appearance="simple"}
+
+## Ejercicio
+
+Demuestre que a partir de la expresión:
+
+$$
+dH = \left(\frac{\partial H}{\partial T}\right)_PdT + \left(\frac{\partial H}{\partial P}\right)_TdP
+$$
+
+Se puede llegar a la siguiente ecuación que relaciona la entalpía con la presión, temperatura y volumen.
+
+$$
+dH = c_PdT + \left[ V - T\left(\frac{\partial V}{\partial T}\right)_P\right]dP
+$$
+
+:::
+
+Fijémonos en la solución del ejercicio anterior. A pesar de que la entalpía quedó expresada únicamente en función de $P$, $V$ y $T$, aún necesitamos encontrar alguna función que relacione estas propiedades. Ya que para calcular $(\partial V/\partial T)_{P}$ debe existir una función tal que $V(P,~T)$. Para despejar esto, necesitamos las **ecuaciones de estado**.
+
+## Ecuaciones de estado (EoS)
+
+### Ejemplo Gas ideal
+
+### Ejemplo Van der Waals
+
+### Ejemplo EoS cúbicas
