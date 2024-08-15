@@ -1,0 +1,35 @@
+---
+title: "Modelos termodinámicos"
+format: html
+filters:
+  - shinylive
+---
+
+## Ecuaciones fundamentales termodinámicas
+
+Durante el curso se presentan distintas relaciones termodinámicas
+
+::::: {layout="[0.7, 0.3]"}
+
+::::{#firstcol}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla semper non dolor eget viverra. Nulla blandit tellus lorem, et ullamcorper ante varius ut. Fusce aliquam tortor quis feugiat sodales. Sed ac diam at tortor accumsan pellentesque vitae sed mauris. Curabitur vulputate felis vitae fermentum gravida. Nunc malesuada ultrices massa eget interdum. Aenean in nunc nulla. Integer dolor turpis, rhoncus vel erat eget, ultrices tempor nunc. Vestibulum a risus auctor, suscipit neque eget, iaculis elit. Praesent fermentum nisl gravida purus viverra molestie. Sed porttitor libero est, et pretium ipsum pharetra eu. Ut vitae varius nisl. Donec egestas tellus eget lectus posuere lobortis. Pellentesque at sem lobortis, porttitor libero sed, laoreet felis. 
+::::
+
+::::{#secondcol}
+
+::: {.callout-important}
+## Notación
+
+En esta página se utilizará la siguiente notación.
+
+Volúmen: $V~\text{(m}^3\text{)}$
+
+Volúmen másico: $\hat{V}~\text{(m}^3\cdot\text{kg}^{-1}\text{)}$
+
+Volúmen másico: $\underline{V}~\text{(m}^3\cdot\text{mol}^{-1}\text{)}$
+
+:::
+
+::::
+
+:::::

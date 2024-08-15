@@ -2,18 +2,42 @@ project:
   type: website
 
 website:
-  title: "workbook"
+  title: "DIQB - IIQ2043"
+  reader-mode: true
+  search: 
+    location: navbar
+    type: textbox
+  back-to-top-navigation: false
+  
   navbar:
+    logo: logo.png
+    toggle-position: left
     left:
       - href: index.qmd
-        text: Home
-      - prueba.qmd
+        text: "Inicio"
+      - href: mc_eos.qmd
+        text: "Material complementario"
+
+  sidebar: 
+    - title: "Material complementario"
+      background: "light"
+      collapse-level: 1
+      style: docked
+      contents:
+        - text: "Tópicos"
+        - text: "---"
+        - mc_eos.qmd
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
-
-
+    grid: 
+      body-width: 800px
+      sidebar-width: 300px
+      margin-width: 250px
+      gutter-width: 2em
 
