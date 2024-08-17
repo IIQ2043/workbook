@@ -118,6 +118,8 @@ Fijémonos en la solución del ejercicio anterior. A pesar de que la entalpía q
 
 ## Ecuaciones de estado (EoS)
 
+hola
+
 ### Ejemplo Gas ideal
 
 ### Ejemplo Van der Waals
