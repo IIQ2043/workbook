@@ -1,6 +1,7 @@
 ---
 title: "Modelos termodinámicos"
 format: html
+tbl-cap-location: bottom
 filters:
   - shinylive
 ---
@@ -90,6 +91,8 @@ Existen propiedades de estado que son de suma importancia para el estudio de la 
 | Energía de Helmholtz   | $dA = SdT-PdV$  | $A(T,~V)$           |
 | Entalpía               | $dH = TdS+VdP$  | $H(S,~P)$           |
 | Energía libre de Gibbs | $dG = -SdT+VdP$ | $G(T,~P)$           |
+
+: Ecuaciones fundamentales {.hover}
 
 A partir de estas ecuaciones, las relaciones de Maxwell y las herramientas de cálculo que se aprenden en el curso, se pueden describir los cambios en las propiedades de un estado a otro (para compuestos puros). De esta forma, podemos cumplir con nuestro objetivo de relacionar la energía con propiedades medibles.
 
