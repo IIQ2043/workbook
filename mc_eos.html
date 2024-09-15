@@ -41,6 +41,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.5.0/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.5.0/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.5.0/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -153,7 +158,7 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -182,15 +187,16 @@ window.Quarto = {
   <li><a href="#propiedades-de-los-compuestos-puros" id="toc-propiedades-de-los-compuestos-puros" class="nav-link" data-scroll-target="#propiedades-de-los-compuestos-puros">Propiedades de los compuestos puros</a></li>
   <li><a href="#ecuaciones-de-estado-eos" id="toc-ecuaciones-de-estado-eos" class="nav-link" data-scroll-target="#ecuaciones-de-estado-eos">Ecuaciones de estado (EoS)</a>
   <ul class="collapse">
-  <li><a href="#ejemplo-gas-ideal" id="toc-ejemplo-gas-ideal" class="nav-link" data-scroll-target="#ejemplo-gas-ideal">Ejemplo Gas ideal</a></li>
-  <li><a href="#ejemplo-van-der-waals" id="toc-ejemplo-van-der-waals" class="nav-link" data-scroll-target="#ejemplo-van-der-waals">Ejemplo Van der Waals</a></li>
-  <li><a href="#ejemplo-eos-cúbicas" id="toc-ejemplo-eos-cúbicas" class="nav-link" data-scroll-target="#ejemplo-eos-cúbicas">Ejemplo EoS cúbicas</a></li>
+  <li><a href="#términos-asociados-a-los-principios-de-lennard-jones" id="toc-términos-asociados-a-los-principios-de-lennard-jones" class="nav-link" data-scroll-target="#términos-asociados-a-los-principios-de-lennard-jones">Términos asociados a los principios de Lennard-Jones</a></li>
+  <li><a href="#otros-términos" id="toc-otros-términos" class="nav-link" data-scroll-target="#otros-términos">Otros términos</a></li>
   </ul></li>
+  <li><a href="#ejemplo-diagrama-pv-para-co_2" id="toc-ejemplo-diagrama-pv-para-co_2" class="nav-link" data-scroll-target="#ejemplo-diagrama-pv-para-co_2">Ejemplo: Diagrama PV para CO<span class="math inline">\(_2\)</span></a></li>
+  <li><a href="#ejercicio-simulación-de-válvulaturbina" id="toc-ejercicio-simulación-de-válvulaturbina" class="nav-link" data-scroll-target="#ejercicio-simulación-de-válvulaturbina">Ejercicio: Simulación de válvula/turbina</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -199,7 +205,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -211,39 +217,52 @@ window.Quarto = {
 </header>
 
 
-<section id="motivación-primera-ley-de-la-termodinámica" class="level2">
-<h2 class="anchored" data-anchor-id="motivación-primera-ley-de-la-termodinámica">Motivación: Primera ley de la termodinámica</h2>
-<p>Uno de los principales intereses de la termodinámica es cuantificar y comprender las variaciones asociadas a la energía interna de un sistema. Por este motivo, la <strong>primera ley de la termodinámica</strong> es uno de los primeros temas que aparecen en cursos introductorios. El objetivo de la primera ley es entender cómo la energía interna de un sistema se transforma en otras formas de energía (calor, trabajo, energía cinética, etc.). Para conseguir esto último, utilizamos balances de energía que modelan el comportamiento de un sistema específico (Abierto o cerrado).</p>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout="[0.7, 0.3]">
-<div class="quarto-layout-row">
-<div id="firstcol" class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: flex-start;">
-<p>Como habrán visto en el curso o en otros cursos de termodinámica, la expresión de la primera ley generalizada se ve de la siguiente manera. <span class="math display">\[
-d(U + \frac{Mv^2}{2} + Mgh) = \delta W + \delta Q + \sum_{in} \delta m_{in}\left( \hat{H}_{in} + \frac{v^2_{in}}{2} + gh_{in} \right)
-\]</span> <span class="math display">\[
-- \sum_{out} \delta m_{out}\left( \hat{H}_{out} + \frac{v^2_{out}}{2} + gh_{out} \right)
-\]</span></p>
-<p>Para más información sobre cómo se llega a esta expresión y lo que representa cada parte del balance, revisar las clases o el capítulo 3.3 del libro <a href="https://bmdigitales-bibliotecas-uc-cl.pucdechile.idm.oclc.org/html5/FUNDAMENTALS%20OF%20CHEMICAL%20ENGINEERING%20THERMODYNAMICS%20K.%20D.%20DAHM/">Fundamentals of Chemical Engineering Thermodynamics</a>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Información sobre la nomenclatura
+Importante
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>En esta sección se espera que el alumno maneje conceptos tales como: Diagramas <em>P-V-T</em>; propiedades críticas; gas ideal; conocimientos básicos sobre la entalpía y entropía. En caso de querer reforzar algún concepto mencionado, se recomienda leer la sección 2.2 del libro <a href="https://bmdigitales-bibliotecas-uc-cl.pucdechile.idm.oclc.org/html5/FUNDAMENTALS%20OF%20CHEMICAL%20ENGINEERING%20THERMODYNAMICS%20K.%20D.%20DAHM/">Fundamentals of Chemical Engineering Thermodynamics</a> (páginas 49-57).</p>
+</div>
+</div>
+<section id="motivación-primera-ley-de-la-termodinámica" class="level2">
+<h2 class="anchored" data-anchor-id="motivación-primera-ley-de-la-termodinámica">Motivación: Primera ley de la termodinámica</h2>
+<p>Los fluidos, al estar compuestos de moléculas, tienen una energía intrínseca que les pertenece: la energía interna. En los sistema que estudiamos suele ser importante entender cómo la energía interna se transforma en otras formas de energía (calor, trabajo, energía cinética, entre otras). Ya que la relación entre ellas depende del sistema que estemos evaluando, utilizamos balances de energía para comprender lo que ocurre en un equipo o una planta química completa.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[0.65, 0.35]">
+<div class="quarto-layout-row">
+<div id="firstcol" class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: flex-start;">
+<p>La ecuación generalizada, <span class="math display">\[
+d\left(U + \frac{Mv^2}{2} + Mgh\right) = \delta W + \delta Q + \sum_{in} \delta m_{in}\left( \hat{H}_{in} + \frac{v^2_{in}}{2} + gh_{in} \right)
+\]</span> <span class="math display">\[
+- \sum_{out} \delta m_{out}\left( \hat{H}_{out} + \frac{v^2_{out}}{2} + gh_{out} \right)
+\]</span></p>
+<p>puede parecer compleja o tediosa de calcular. En este caso se considera un <strong>sistema abierto</strong>, el cuál se somete a cambios de energía producidos en presencia de trabajo de eje; calor; energía interna, potencial y cinética; entrada y salida de energía, expansión y compresión. En la práctica, los sistemas presentan solo algunos de los factores considerados en la ecuación generalizada.</p>
+</div>
+<div id="secondcol" class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: flex-start;">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Parámetros y variables
+</div>
+</div>
 <div class="callout-body-container callout-body">
 <ul>
 <li><span class="math inline">\(U\)</span>: Energía interna (<span class="math inline">\(\text{J}\)</span>)</li>
 <li><span class="math inline">\(M\)</span>: Masa total en el sistema (<span class="math inline">\(\text{kg}\)</span>)</li>
 <li><span class="math inline">\(v\)</span>: Velocidad (<span class="math inline">\(\text{m}\cdot\text{s}^{-1}\)</span>)</li>
 <li><span class="math inline">\(h\)</span>: Altura (<span class="math inline">\(\text{m}\)</span>)</li>
-<li><span class="math inline">\(\hat{H}\)</span> Entalpía específica (<span class="math inline">\(\text{J}\cdot\text{kg}^{-1}\)</span>)</li>
+<li><span class="math inline">\(\hat{H}\)</span>: Entalpía específica (<span class="math inline">\(\text{J}\cdot\text{kg}^{-1}\)</span>)</li>
 <li><span class="math inline">\(\delta m_{in}\)</span> o <span class="math inline">\(\delta m_{out}\)</span>: Masa que entra o sale del sistema (<span class="math inline">\(\text{kg}\)</span>)</li>
 <li><span class="math inline">\(W\)</span>: Trabajo que entra al sistema. Puede ser de eje, expansión y/o compresión (<span class="math inline">\(\text{J}\)</span>)</li>
 <li><span class="math inline">\(Q\)</span>: Calor que entra al sistema (<span class="math inline">\(\text{J}\)</span>)</li>
@@ -252,16 +271,28 @@ Información sobre la nomenclatura
 </div>
 </div>
 </div>
-<div id="secondcol" class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: flex-start;">
+</div>
+<p>Otra forma de encontrar esta ecuación es en su forma <strong>transiente</strong>, en otras palabras, considerando la variación en el tiempo.</p>
+<p><span class="math display">\[
+\frac{d}{dt}\left[M\left(\hat{U} + \frac{v^2}{2} + gh\right)\right] = \dot{W} + \dot{Q} + \sum_{in} \dot{m}_{in}\left( \hat{H}_{in} + \frac{v^2_{in}}{2} + gh_{in} \right) - \sum_{out} \dot{m}_{out}\left( \hat{H}_{out} + \frac{v^2_{out}}{2} + gh_{out} \right)
+\]</span></p>
+<p>Sin embargo, en la mayoría de libros y cursos de termodinámica se presenta el balance de energía para sistemas <strong>no transientes y cerrados</strong> bajo el nombre de la primera ley de la termodinámica.</p>
+<p><span class="math display">\[
+\delta U = \delta W + \delta Q
+\]</span></p>
+<p>Independientemente de nuestro sistema, ya sea una bomba, una turbina, una válvula o una caldera, el balance de energía tiene un rol fundamental en definir el comportamiento de este.</p>
+<p>El siguiente paso para evaluar nuestro sistema sería cuantificar los cambios energéticos. Esto se consigue <strong>midiendo</strong> las variaciones de energía. Aquí que surge un problema: no es posible medir la energía interna <span class="math inline">\(U\)</span>. Esto último no se puede hacer de forma directa, y en consecuencia, existe una necesidad de definir las propiedades termodinámicas en función de <strong>unidades medibles</strong>: presión (<span class="math inline">\(P\)</span>), volumen (<span class="math inline">\(V\)</span>) y temperatura (<span class="math inline">\(T\)</span>).</p>
 <div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Notación
+Sobre la notación
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>En esta página se utilizará la siguiente notación.</p>
 <p>Volúmen: <span class="math inline">\(V~\text{(m}^3\text{)}\)</span></p>
@@ -270,37 +301,14 @@ Notación
 </div>
 </div>
 </div>
-</div>
-</div>
-<p>Dicha ecuación puede ser encontrada en función de variaciones en el tiempo (es decir, en su forma <strong>transiente</strong>).</p>
-<p><span class="math display">\[
-\frac{d}{dt}\left[M\left(\hat{U} + \frac{v^2}{2} + gh\right)\right] = \dot{W} + \dot{Q} + \sum_{in} \dot{m}_{in}\left( \hat{H}_{in} + \frac{v^2_{in}}{2} + gh_{in} \right) - \sum_{out} \dot{m}_{out}\left( \hat{H}_{out} + \frac{v^2_{out}}{2} + gh_{out} \right)
-\]</span></p>
-<p>No obstante, la forma más común de la primera ley es para sistemas <strong>no transientes y cerrados</strong>. Expresión que se obtiene a partir de la ecuación generalizada.</p>
-<p><span class="math display">\[
-\delta U = \delta W + \delta Q
-\]</span></p>
-<p>Como se puede observar, existen distintas maneras de describir los cambios de energía en un sistema. Es nuestra labor definir correctamente los fenómenos que ocurren en la situación que escojamos. En ingeniería, los sistemas de interés pueden ser una bomba, una válvula, un calefactor, entre otros. Para predecir y rectificar que un equipo o sistema funcione correctamente, debemos ser capaces de evaluar el sistema y medirlo. Independientemente del sistema y de cómo se desee representar la primera ley de la termodinámica, <strong>no es posible medir la energía interna <span class="math inline">\(U\)</span></strong>. Por lo tanto, existe una necesidad de escribir las propiedades termodinámicas en función de unidades medibles: presión (<span class="math inline">\(P\)</span>), volumen (<span class="math inline">\(V\)</span>) y temperatura (<span class="math inline">\(T\)</span>).</p>
+<p><br></p>
 </section>
 <section id="propiedades-de-los-compuestos-puros" class="level2">
 <h2 class="anchored" data-anchor-id="propiedades-de-los-compuestos-puros">Propiedades de los compuestos puros</h2>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Imporante
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Para esta sección, se asume que el alumno comprende conceptos como: Las fases de un compuesto; el punto crítico y las condiciones supercríticas; diagramas <em>P-V-T</em>; conocimientos básicos sobre la entalpía y entropía. En caso de querer reforzar algún concepto mencionado, se recomienda leer la sección 2.2 del libro <a href="https://bmdigitales-bibliotecas-uc-cl.pucdechile.idm.oclc.org/html5/FUNDAMENTALS%20OF%20CHEMICAL%20ENGINEERING%20THERMODYNAMICS%20K.%20D.%20DAHM/">Fundamentals of Chemical Engineering Thermodynamics</a> (páginas 49-57).</p>
-</div>
-</div>
-<p>Como habrán visto en el curso, las <strong>propiedades de estado</strong> son aquellas características de la condición en la que se encuentra un compuesto o sistema. Sin importar el cómo se llego a esa condición, las propiedades de estado siempre serán las mismas para dicho compuesto o sistema. Eso significa que la energía interna del agua a <span class="math inline">\(25~^\circ\text{C}\)</span> y 1 atmósfera será siempre la misma idependientemente de la manera en que se llegó a la condición, siempre y cuando los sistemas sean iguales.</p>
-<p>Existen propiedades de estado que son de suma importancia para el estudio de la termodinámica. Las ecuaciones que las describen se denominan <strong>ecuaciones fundamentales de la termodinámica</strong>.</p>
+<p>Antes de continuar, es importante hacer un paréntesis con respecto a las <strong>propiedades de estado</strong>. Estas son aquellas características de la condición en la que se encuentra un compuesto o sistema. Sin importar el cómo se llego a esa condición, las propiedades de estado siempre serán las mismas. Eso significa que la energía interna del agua a <span class="math inline">\(25~^\circ\text{C}\)</span> y <span class="math inline">\(1\)</span> atmósfera será siempre la misma idependientemente de la manera en que se llegó a la condición, siempre y cuando los sistemas sean iguales.</p>
+<p>Existen propiedades de estado que son de suma importancia para el estudio de la termodinámica. Las ecuaciones que las describen se denominan <strong>ecuaciones fundamentales de la termodinámica</strong> y entre ellas se encuentra la energía interna.</p>
 <table class="table-hover table">
-<caption>Ecuaciones fundamentales</caption>
+<caption>Tabla: Ecuaciones fundamentales</caption>
 <thead>
 <tr class="header">
 <th>Propiedad</th>
@@ -331,7 +339,7 @@ Imporante
 </tr>
 </tbody>
 </table>
-<p>A partir de estas ecuaciones, las relaciones de Maxwell y las herramientas de cálculo que se aprenden en el curso, se pueden describir los cambios en las propiedades de un estado a otro (para compuestos puros). De esta forma, podemos cumplir con nuestro objetivo de relacionar la energía con propiedades medibles.</p>
+<p>A partir de estas ecuaciones, las relaciones de Maxwell y las herramientas de cálculo que se aprenden en el curso, es posible describir los cambios en las propiedades de un estado a otro (para compuestos puros). De esta manera, podemos cumplir con nuestro objetivo de <strong>relacionar la energía con propiedades medibles</strong>. Pongamos a prueba esto a través de un ejercicio.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -342,32 +350,255 @@ Ejercicio
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Demuestre que a partir de la expresión:</p>
+<p>Es común suponer que la entalpía de un fluido que entra a una válvula es la misma que posee al salir de esta (isoentalpía); se desea relacionar la entalpía con unidades medibles. Demuestre a partir de la expresión:</p>
 <p><span class="math display">\[
 dH = \left(\frac{\partial H}{\partial T}\right)_PdT + \left(\frac{\partial H}{\partial P}\right)_TdP
 \]</span></p>
-<p>Se puede llegar a la siguiente ecuación que relaciona la entalpía con la presión, temperatura y volumen.</p>
+<p>Que se puede llegar a la siguiente ecuación que relaciona la entalpía con la presión, temperatura y volumen.</p>
 <p><span class="math display">\[
 dH = c_PdT + \left[ V - T\left(\frac{\partial V}{\partial T}\right)_P\right]dP
 \]</span></p>
 </div>
 </div>
-<p>Fijémonos en la solución del ejercicio anterior. A pesar de que la entalpía quedó expresada únicamente en función de <span class="math inline">\(P\)</span>, <span class="math inline">\(V\)</span> y <span class="math inline">\(T\)</span>, aún necesitamos encontrar alguna función que relacione estas propiedades. Ya que para calcular <span class="math inline">\((\partial V/\partial T)_{P}\)</span> debe existir una función tal que <span class="math inline">\(V(P,~T)\)</span>. Para despejar esto, necesitamos las <strong>ecuaciones de estado</strong>.</p>
+<p>Fijémonos en la solución del ejercicio anterior. A pesar de que la entalpía quedó expresada únicamente en función de <span class="math inline">\(P\)</span>, <span class="math inline">\(V\)</span> y <span class="math inline">\(T\)</span>, ¿cómo podríamos calcular <span class="math inline">\(\left(\partial V/\partial T\right)_P\)</span>? Aún necesitamos encontrar alguna función que relacione estas propiedades entre sí. Para esto tenemos las <strong>ecuaciones de estado</strong>.</p>
+<p><br></p>
 </section>
 <section id="ecuaciones-de-estado-eos" class="level2">
 <h2 class="anchored" data-anchor-id="ecuaciones-de-estado-eos">Ecuaciones de estado (EoS)</h2>
-<p>hola</p>
-<section id="ejemplo-gas-ideal" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplo-gas-ideal">Ejemplo Gas ideal</h3>
+<p>Las ecuaciones de estado relacionan las propiedades de presión (<span class="math inline">\(P\)</span>), volúmen (<span class="math inline">\(V\)</span>) y temperatura (<span class="math inline">\(T\)</span>) en base a fundamentos teóricos del comportamiento molecular de los compuestos. En otras palabras, <strong>las <em>EoS</em> explican el comportamiento macroscópico de los fluidos a partir de lo microscópico</strong>. Entender en profundidad cada ecuación de estado no es la finalidad de este curso. Lo más importante es que entiendan los motivos por los cuales se utilizan y, también, que formen una idea general de los términos que aparecen en ellas.</p>
+<section id="términos-asociados-a-los-principios-de-lennard-jones" class="level3">
+<h3 class="anchored" data-anchor-id="términos-asociados-a-los-principios-de-lennard-jones">Términos asociados a los principios de Lennard-Jones</h3>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[0.65, 0.35]">
+<div class="quarto-layout-row">
+<div id="firstcol" class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: flex-start;">
+<p><br>
+El potencial de Lennard-Jones es un modelo de interacción molecular que describe el comportamiento de atracción y repulsión entre dos moléculas. <span class="math display">\[
+\Gamma = 4\varepsilon\left[\left(\frac{\sigma}{r}\right)^{12}-\left(\frac{\sigma}{r}\right)^{6}\right]
+\]</span> A nosotros solo nos interesa saber que algunos modelos termodinámicos se basan en los principios propuestos por este modelo para mejorar su capacidad de predicción.</p>
+</div>
+<div id="secondcol" class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: flex-start;">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Parámetros y variables
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="math inline">\(\Gamma\)</span>: Energía potencial intermolecular.</li>
+<li><span class="math inline">\(r\)</span>: Distancia entre las dos moléculas.</li>
+<li><span class="math inline">\(\sigma\)</span>: Distancia a la cual las moléculas pasan de atraerse (<span class="math inline">\(\Gamma&lt;0\)</span>) a repelerse (<span class="math inline">\(\Gamma&gt;0\)</span>).</li>
+<li><span class="math inline">\(\varepsilon\)</span>: Energía potencial máxima de atracción.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Término atractivo (<span class="math inline">\(a\)</span>)</strong>: En las <em>EoS</em> tipo Van der Waals se incluye este término para representar la <strong>atracción entre las moléculas</strong>. Lennard-Jones propone que esta interacción es dependiente de la polaridad de las moléculas y de la distancia entre ellas.</li>
+<li><strong>Término de exclusión por volumen (<span class="math inline">\(b\)</span>)</strong>: Este parámetro representa el volumen que no puede ocupar un molécula a causa de que otra se encuentre en dicho espacio. Es lógico pensar que este fenómeno ocurre; una molécula no puede ocupar un espacio que otra ya está ocupando. En términos de Lennard-Jones: a medida que una molécula se acerca a otra, la energía potencial repulsiva entre ellas tiende a infinito por lo que nunca se tocan. Por eso, este parámetro se conoce como el <strong>término repulsivo</strong>.</li>
+</ul>
 </section>
-<section id="ejemplo-van-der-waals" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplo-van-der-waals">Ejemplo Van der Waals</h3>
+<section id="otros-términos" class="level3">
+<h3 class="anchored" data-anchor-id="otros-términos">Otros términos</h3>
+<p>Podemos seguir mejorando los modelos eliminando otros supuestos. Uno de ellos es que las moléculas son perfectamente esféricas. Esto es relativamente cierto para moléculas pequeñas, pero limita la aplicabilidad del modelo. Para arreglar este problema se utiliza el <strong>factor acéntrico (<span class="math inline">\(\omega\)</span>)</strong>. En otras palabras, este parámetro representa la no esfercidad de las moléculas.</p>
+<p>Otro aspecto que no estamos considerando es el efecto de la temperatura. La temperatura impacta directamente la forma en que las moléculas interactuan y se atraen, por lo que podemos definir <strong>la atracción/interacción como una función de T, tal que <span class="math inline">\(a(T)\)</span></strong>. La ecuación de Peng-Robinson es un ejemplo de la aplicación de esta variación (entiéndase <span class="math inline">\(\alpha(T)\)</span> como una expansión del término de <span class="math inline">\(a\)</span>).</p>
+<p><br></p>
 </section>
-<section id="ejemplo-eos-cúbicas" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplo-eos-cúbicas">Ejemplo EoS cúbicas</h3>
+</section>
+<section id="ejemplo-diagrama-pv-para-co_2" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-diagrama-pv-para-co_2">Ejemplo: Diagrama PV para CO<span class="math inline">\(_2\)</span></h2>
+<p>Pongamos a prueba la teoría con una modelación. Suponga que desea predecir la relación PVT para dióxido de carbono. Para esto usted usará dos ecuaciones de estado: <strong>Van der Waals</strong> y <strong>Peng-Robinson</strong>. La validación experimental se hará en base a la <strong>curva de saturación</strong> real de CO<span class="math inline">\(_2\)</span> (NIST). Las ecuaciones de estos modelos son las siguientes:</p>
+<p><span id="eq-vdw"><span class="math display">\[
+\text{Van der Waals:}~~~P = \frac{RT}{\underline{V}-b}-\frac{a}{\underline{V}^2}
+\tag{1}\]</span></span></p>
+<p><span class="math display">\[
+\text{donde,}~~a = \frac{27}{64}\frac{(RT_c)^2}{P_c}~;~~ b = \frac{1}{8}\frac{RT_c}{P_c}
+\]</span></p>
+<p><span id="eq-pr"><span class="math display">\[
+\text{Peng-Robinson:}~~~P = \frac{RT}{\underline{V}-b}-\frac{a\alpha(T)}{\underline{V}^2+2b\underline{V}-b^2}
+\tag{2}\]</span></span></p>
+<p><span class="math display">\[
+\text{donde,}~~a = 0.45724\frac{(RT_c)^2}{P_c}~;~~ b = 0.0778\frac{RT_c}{P_c}
+\]</span> <span class="math display">\[
+\alpha(T)=\left(1+\left(0.37464 + 1.54226\omega − 0.26992\omega^2\right)\times\left(1-T_r^{0.5}\right)\right)^2
+\]</span> Notar que Peng-Robinson considera tanto los parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span>, como los parámetros <span class="math inline">\(\omega\)</span> y la dependencia de temperatura para el término de interacción. A continuación un gráfico comparativo entre ambas <em>EoS</em>.</p>
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| viewerHeight: 550
+
+from shiny import *
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+AnimationOptions = {'interval': 200,'loop': False}
+
+app_ui = ui.page_sidebar(
+  ui.sidebar(
+    "Ecuaciones de estado:",
+    ui.input_switch("switch_vdw","Van der Waals", value=True),
+    ui.input_switch("switch_pr","Peng-Robinson", value=True),
+    ui.input_slider("T","Isolínea de Temperatura:", min=285,max=315,value=289,step=3,animate=AnimationOptions,post=" K"),
+    width=300),
+  ui.output_plot("plot")
+)
 
 
+def server(input, output, session):
+  
+  # Propiedades termodinámicas CO2 TODAS DE NIST DATABASE (Suehiro, Nakajima, et al., 1996)
+  Tc = 304.18 #K
+  Pc = 73.80e5 #Pa
+  omega = 0.239
+  V = np.linspace(50e-6, 380e-6, 330) #m3/mol
+  R = 8.314
+
+  ######################## SAT (NIST) ########################
+  Psat_exp = [4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.314, 7.328, 7.342, 7.356, 7.37, 7.38, 7.37, 7.356, 7.342, 7.328, 7.314, 7.3, 7.2, 7.1, 7, 6.9, 6.8, 6.7, 6.6, 6.5, 6.4, 6.3, 6.2, 6.1, 6, 5.9, 5.8, 5.7, 5.6, 5.5, 5.4, 5.3, 5.2, 5.1, 5, 4.9, 4.8, 4.7, 4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4]
+  vsat_exp = [49.225, 49.586, 49.953, 50.327, 50.709, 51.099, 51.498, 51.906, 52.324, 52.754, 53.196, 53.651, 54.12, 54.605, 55.108, 55.629, 56.171, 56.736, 57.327, 57.947, 58.599, 59.288, 60.019, 60.8, 61.639, 62.548, 63.541, 64.64, 65.873, 67.285, 68.948, 70.993, 73.717, 78.051, 78.96, 80.025, 81.328, 83.06, 85.936, 91.9, 103.51, 108.16, 111.28, 113.81, 115.99, 117.95, 128.82, 137.29, 144.75, 151.68, 158.28, 164.69, 170.98, 177.22, 183.44, 189.67, 195.94, 202.28, 208.69, 215.21, 221.84, 228.6, 235.5, 242.57, 249.82, 257.26, 264.91, 272.78, 280.9, 289.28, 297.94, 306.91, 316.2, 325.84, 335.85, 346.26, 357.11, 368.43, 380.24]
+  ################# v (cm3/mol) // p (MPa) ###################
+
+  ## VAN DER WAALS
+  @reactive.calc
+  def vdw_eos():
+    T = input.T()
+    a = 27/64 * (R*Tc)**2/Pc
+    b = 1/8 * (R*Tc)/Pc
+    P = []
+    for v in V:
+      p = (R*T)/(v-b) - a/v**2
+      P.append(p/10**6)
+    
+    return V*10**6, P
+  
+  @reactive.calc
+  def vdw_isofug():
+    T = input.T()
+    a = 27/64 * (R*Tc)**2/Pc
+    b = 1/8 * (R*Tc)/Pc
+    v0 =[80e-6, 230e-6, 5.3e6] # Esto funciona, simplemente con prueba y error entre los límites (280K - &lt;Tc)
+
+    def solver_vdw(I):
+      vL, vV, Psat = I
+      zL = (Psat*vL)/(R*T)
+      zV = (Psat*vV)/(R*T)
+      phiL = np.exp(zL - 1 - a/(R*T*vL) - np.log(zL*(1 - b/vL)))
+      phiV = np.exp(zV - 1 - a/(R*T*vV) - np.log(zV*(1 - b/vV)))
+      pL = (R*T)/(vL-b) - a/vL**2
+      pV = (R*T)/(vV-b) - a/vV**2
+
+      f1 = phiL - phiV
+      f2 = pL - Psat
+      f3 = pV - Psat
+      return [f1,f2,f3]
+    
+    vdw_sol = fsolve(solver_vdw, v0)
+    return vdw_sol
+  
+  ## PENG-ROBINSON
+  @reactive.calc
+  def pr_eos():
+    T = input.T()
+    a = 0.45724 * (R*Tc)**2/Pc
+    alpha = (1 + (0.37464 + 1.54226*omega - 0.26992*omega**2)*(1-(T/Tc)**(1/2)))**2
+    b = 0.0778 * (R*Tc)/Pc
+    P = []
+    for v in V:
+      p = (R*T)/(v-b) - (a*alpha)/(v**2+2*b*v-b**2)
+      P.append(p/10**6)
+    
+    return V*10**6, P
+  
+  @reactive.calc
+  def pr_isofug():
+    T = input.T()
+    a = 0.45724 * (R*Tc)**2/Pc
+    alpha = (1 + (0.37464 + 1.54226*omega - 0.26992*omega**2)*(1-(T/Tc)**(1/2)))**2
+    b = 0.0778 * (R*Tc)/Pc
+
+    v0 =[60e-6, 190e-6, 5.3e6] # Esto funciona, simplemente con prueba y error entre los límites (280K - &lt;Tc)
+
+    def solver_pr(I):
+      vL, vV, Psat = I
+      A = (a*alpha*Psat)/(R*T)**2
+      B = (b*Psat)/(R*T)
+      zL = (Psat*vL)/(R*T)
+      zV = (Psat*vV)/(R*T)
+
+      phiL = np.exp(zL - 1 - np.log(zL - B) - A/(B*8**(1/2))*np.log((zL+(1+2**(1/2))*B)/(zL+(1-2**(1/2))*B)))
+      phiV = np.exp(zV - 1 - np.log(zV - B) - A/(B*8**(1/2))*np.log((zV+(1+2**(1/2))*B)/(zV+(1-2**(1/2))*B)))
+      pL = (R*T)/(vL-b) - (a*alpha)/(vL**2+2*b*vL-b**2)
+      pV = (R*T)/(vV-b) - (a*alpha)/(vV**2+2*b*vV-b**2)
+
+      f1 = phiL - phiV
+      f2 = pL - Psat
+      f3 = pV - Psat
+      return [f1,f2,f3]
+    
+    pr_sol = fsolve(solver_pr, v0)
+    return pr_sol
+
+  # Graficar
+
+  @render.plot(width=550,height=500)
+  def plot():
+
+    if input.switch_vdw():
+      v_vdw, P_vdw = vdw_eos() # retorna en cm3/mol y MPa
+      plt.plot(v_vdw, P_vdw, c="#7e9da2", label="Van der Waals")
+      
+      if input.T() &lt; Tc:
+        vL_vdw, vV_vdw, Psat_vdw = vdw_isofug() # retorna en m3/mol y Pa
+        plt.plot([vL_vdw*10**6,vV_vdw*10**6], [Psat_vdw*10**(-6),Psat_vdw*10**(-6)], c="#7e9da2", linestyle='dashed')
+
+    if input.switch_pr():
+      v_pr, P_pr = pr_eos() # retorna en cm3/mol y MPa
+      plt.plot(v_pr, P_pr, c="#cc3739", label="Peng-Robinson")
+      
+      if input.T() &lt; Tc:
+        vL_pr, vV_pr, Psat_pr = pr_isofug() # retorna en m3/mol y Pa
+        plt.plot([vL_pr*10**6,vV_pr*10**6], [Psat_pr*10**(-6),Psat_pr*10**(-6)], c="#cc3739", linestyle='dashed')
+      
+
+    plt.plot(vsat_exp, Psat_exp, c="#0e150d", label="Curva de saturación")
+    plt.legend()
+    plt.xlabel("Volumen molar / cm$^3\cdot$mol$^{-1}$")
+    plt.ylabel("Presión / MPa")
+    plt.xlim([50,380])
+    plt.ylim([4,10])
+    plt.show()
+
+app = App(app_ui, server)
+</code></pre>
+<p>En la figura, las líneas continuas representan las ecuaciones <a href="#eq-vdw" class="quarto-xref">1</a> y <a href="#eq-pr" class="quarto-xref">2</a>. Es importante notar que bajo la curva de saturación, ambas EoS presentan un comportamiento que no sigue el patrón esperado. Usualmente, aprendemos que, a presión constante, la temperatura permanece estable hasta que ocurre el cambio de fase, o que, a temperatura constante (como en el gráfico), la presión se mantiene fija hasta que el cambio de fase tiene lugar. Sin embargo, estas ecuaciones de estado no parecen cumplir con esta observación.</p>
+<p>Para definir correctamente el cambio de fase, necesitamos recurrir a la <strong>energía libre de Gibbs</strong> o, de manera equivalente, a la <strong>fugacidad</strong>. La fugacidad en el gráfico está representada por la línea discontinua y su predicción depende de la ecuación de estado utilizada. El objetivo de esta sección no es explicar la fugacidad. De momento, es preferible analizar el gráfico y responder las siguientes preguntas.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preguntas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Qué modelo predice mejor la curva de saturación? ¿Existen diferencias entre las presiones de saturación entre los modelos? ¿Qué puede decir sobre las predicciones en fase gaseosa? ¿Y en fase líquida?</p>
+</div>
+</div>
+<p><br></p>
 </section>
+<section id="ejercicio-simulación-de-válvulaturbina" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-simulación-de-válvulaturbina">Ejercicio: Simulación de válvula/turbina</h2>
+<p>texto texto texto</p>
+
+
 </section>
 
 </main> <!-- /main -->
