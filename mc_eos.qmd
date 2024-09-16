@@ -354,7 +354,3 @@ Para definir correctamente el cambio de fase, necesitamos recurrir a la **energ�
 :::
 
 <br>
-
-## Ejercicio: Simulación de válvula/turbina
-
-texto texto texto
