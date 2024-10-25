@@ -58,11 +58,11 @@ plt.fill_between(V*10**6,Psat/10**6,P,color="#f15b4c",alpha=0.6,where=(V*10**6<=
 plt.fill_between(V*10**6,Psat/10**6,P,color="#ffd45b",alpha=0.4,where=(V*10**6<=vsol[2])&(V*10**6>=vsol[1]))
 plt.axhline(Psat/10**6,linestyle="dashed",color="#1f2338")
 
-plt.text(73,4.6,"A$^\mathrm{I}$",color="#cc222b",fontsize="xx-large")
-plt.text(155,5.36,"A$^\mathrm{II}$",color="#faa41b",fontsize="xx-large")
-plt.text(280,5.36,"P$^\mathrm{sat}$",color="#1f2338",fontsize="large")
+plt.text(73,4.6,"A$^\\mathrm{I}$",color="#cc222b",fontsize="xx-large")
+plt.text(155,5.36,"A$^\\mathrm{II}$",color="#faa41b",fontsize="xx-large")
+plt.text(280,5.36,"P$^\\mathrm{sat}$",color="#1f2338",fontsize="large")
 
-plt.xlabel("Volumen molar / cm$^3\cdot$mol$^{-1}$")
+plt.xlabel("Volumen molar / cm$^3\\cdot$mol$^{-1}$")
 plt.ylabel("Presión / MPa")
 plt.xlim([50,300])
 plt.ylim([3,8])
