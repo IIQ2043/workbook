@@ -6,6 +6,8 @@ filters:
   - shinylive
 ---
 
+[comment]: <> (ToDo: Cambiar las lecturas requeridas. Añadir tabla en la sección de teŕminos. Añadir colores al texto. Añadir label a la celda shiny.)
+
 ::: {.callout-warning appearance="simple"}
 ## Importante
 
@@ -157,6 +159,8 @@ A nosotros solo nos interesa saber que algunos modelos termodinámicos se basan 
 ::::
 
 :::::
+
+[comment]: <> (Yo agregaría una tabla para explicar estos conceptos, y una explicación un poco más breve, podría ser algo como "Concepto" "símbolo" "Descripción")
 
 * **Término atractivo ($a$)**: En las *EoS* tipo Van der Waals se incluye este término para representar la **atracción entre las moléculas**. Lennard-Jones propone que esta interacción es dependiente de la polaridad de las moléculas y de la distancia entre ellas.
 * **Término de exclusión por volumen ($b$)**: Este parámetro representa el volumen que no puede ocupar un molécula a causa de que otra se encuentre en dicho espacio. Es lógico pensar que este fenómeno ocurre; una molécula no puede ocupar un espacio que otra ya está ocupando. En términos de Lennard-Jones: a medida que una molécula se acerca a otra, la energía potencial repulsiva entre ellas tiende a infinito por lo que nunca se tocan. Por eso, este parámetro se conoce como el **término repulsivo**.
@@ -342,6 +346,8 @@ app = App(app_ui, server)
 
 ```
 
+[comment]: <> (No me gusta esta parte final, añadiría una label a la celda de código, util para poder citarla eventualmente, quizás podría ponerle colores al texto para identificar las curvas. Me gusta la idea de añadir colores al texto en general.)
+
 En la figura, las líneas continuas representan las ecuaciones [-@eq-vdw] y [-@eq-pr]. Es importante notar que bajo la curva de saturación, ambas EoS presentan un comportamiento que no sigue el patrón esperado. Usualmente, aprendemos que, a presión constante, la temperatura permanece estable hasta que ocurre el cambio de fase, o que, a temperatura constante (como en el gráfico), la presión se mantiene fija hasta que el cambio de fase tiene lugar. Sin embargo, estas ecuaciones de estado no parecen cumplir con esta observación.
 
 Para definir correctamente el cambio de fase, necesitamos recurrir a la **energía libre de Gibbs** o, de manera equivalente, a la **fugacidad**. La fugacidad en el gráfico está representada por la línea discontinua y su predicción depende de la ecuación de estado utilizada. El objetivo de esta sección no es explicar la fugacidad. De momento, es preferible analizar el gráfico y responder las siguientes preguntas.
@@ -355,3 +361,4 @@ Para definir correctamente el cambio de fase, necesitamos recurrir a la **energ�
 
 <br>
 
+hola

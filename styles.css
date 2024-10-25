@@ -1,8 +1,14 @@
 /* css styles */
-.navbar-logo {
-    max-height: 50px;
-  }
 
 p {
   text-align: justify;
+}
+
+.sidebar-logo {
+  width: 80%;
+}
+
+.quarto-sidebar-footer {
+  font-style: italic;
+  color: #808080;
 }

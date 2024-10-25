@@ -1,0 +1,137 @@
+---
+title: "Fugacidad"
+format: html
+tbl-cap-location: bottom
+filters:
+  - shinylive
+---
+
+El equilibrio es, a veces, más complejo de lo que creemos. Cuando hay cambio de fase, hablamos de **equilibrio de fases**, lo que implica algunas igualdades en las propiedades de los compuestos. Por ejemplo: **equilibrio térmico** $T^L=T^V$, **equilibrio mecánico** $P^L=P^V$ y **equilibrio químico** $\mu^L=\mu^V$. Al existir un balance entre las fuerzas del sistema diremos también que las **energías libres de Gibbs** se igualan, $G^L=G^V$. Existen varias formas de interpretar lo que ocurre en el equilibrio termodinámico; en este material de apoyo se buscará una aproximación gráfica que sea fácil de visualizar y consistente con el material anterior.
+
+## Motivación: Presión de saturación a partir de una *EoS*
+
+Recordemos nuestro [gráfico PV para CO$_2$ @sec-CO2]. Bajo la temperatura crítica ($T_c$), las ecuaciones de estado se comportaban de manera contraintuitiva. En vez de seguir una línea recta, como lo esperaríamos en cambio de fase, se formaba una curva con vueltas correspondientes a una ecuación cuadrática. Esto último es entendible dada la naturaleza de las ecuaciones de estado que estudiamos en el curso, sin embargo, no nos entrega una explicación sobre el cambio de fase.
+
+::::: {layout="[0.57, 0.43]"}
+
+::::{#firstcol}
+
+```{python}
+#| label: fig-isofug
+#| echo: false
+#| fig-cap: "Predicción de saturación con Redlich-Kwong"
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import fsolve
+
+def pr_eos(v,T):
+    a = 0.45724 * (R*Tc)**2/Pc
+    alpha = (1 + (0.37464 + 1.54226*omega - 0.26992*omega**2)*(1-(T/Tc)**(1/2)))**2
+    b = 0.0778 * (R*Tc)/Pc
+    p = (R*T)/(v-b) - (a*alpha)/(v**2+2*b*v-b**2)
+    return p
+    
+def solver_V(v):
+        return pr_eos(v,T) - Psat
+
+R = 8.314
+Tc = 304.18 #K
+Pc = 73.80e5 #Pa
+omega = 0.239
+T = 290 #K
+Psat = 5305993.232858942 #Pa; sat @290K
+V = np.linspace(50e-6, 380e-6, 330) #m3/mol
+P = [] #MPa
+
+for v in V:
+    P.append(pr_eos(v,T)/10**6)
+
+v0s = [5e-5,1e-4,1e-3] # encontrar V^L, V^u y V^V
+vsol = []
+for v0 in v0s:
+    v = fsolve(solver_V,v0)
+    vsol.append(v[0]*10**6)
+
+plt.plot(V*10**6, P, c="#1f2338")
+plt.fill_between(V*10**6,Psat/10**6,P,color="#f15b4c",alpha=0.6,where=(V*10**6<=vsol[1])&(V*10**6>=vsol[0]))
+plt.fill_between(V*10**6,Psat/10**6,P,color="#ffd45b",alpha=0.4,where=(V*10**6<=vsol[2])&(V*10**6>=vsol[1]))
+plt.axhline(Psat/10**6,linestyle="dashed",color="#1f2338")
+
+plt.text(73,4.6,"A$^\mathrm{I}$",color="#cc222b",fontsize="xx-large")
+plt.text(155,5.36,"A$^\mathrm{II}$",color="#faa41b",fontsize="xx-large")
+plt.text(280,5.36,"P$^\mathrm{sat}$",color="#1f2338",fontsize="large")
+
+plt.xlabel("Volumen molar / cm$^3\cdot$mol$^{-1}$")
+plt.ylabel("Presión / MPa")
+plt.xlim([50,300])
+plt.ylim([3,8])
+plt.show()
+
+```
+
+
+::::
+
+::::{#secondcol}
+
+Sabemos que en un cambio de fase líquido-vapor **debe existir una representación de volumen para ambas fases, líquida ($V^L$) y gaseosa ($V^V$), a temperatura y presión constante**. En otras palabras, queremos una línea de presión que intercepte como mínimo dos veces la *EoS*. Notarás que hay más de un valor de presión para el cual esta restricción es verdadera. Por suerte, las ecuaciones de estado cúbicas ocultan en su diseño una solución a esto. **En equilibrio de fases y temperatura constante, la presión de saturación interceptará dicha *EoS* 3 veces formando dos áreas equivalentes**.
+
+La [figura @fig-isofug] ejemplifica las áreas formadas en equilibrio de fases para CO$_2$ (sistema puro) a $290~\mathrm{K}$. Diremos que los volúmenes extremos representarán la fase líquida y gaseosa tal que $V^L\ll V^V$, mientras que el volumen intermedio es inestable ($V^u$).
+
+::::
+
+:::::
+
+### ¿Es lo mismo igualar las áreas a igualar $G$?
+
+Siempre que encontremos las áreas equivalentes en el gráfico, tendremos las propiedades en equilibrio de presión, temperatura y volumen. Pero, ¿es lo mismo que igualar la energía libre de Gibbs? La respuesta es que sí. Demostrémoslo utilizando la [figura @fig-isofug].
+
+Sean las áreas $\mathrm{A}^\mathrm{I}$ y $\mathrm{A}^\mathrm{II}$:
+
+$$
+\mathrm{A}^\mathrm{I}=\int_{\underline{V}^L}^{\underline{V}^u}P^{\mathrm{sat}}d\underline{V}-\int_{\underline{V}^L}^{\underline{V}^u}P(\underline{V},T)d\underline{V}
+$$
+
+$$
+\mathrm{A}^\mathrm{II}=\int_{\underline{V}^u}^{\underline{V}^V}P(\underline{V},T)d\underline{V}-\int_{\underline{V}^u}^{\underline{V}^V}P^{\mathrm{sat}}d\underline{V}
+$$
+
+Ya que sabemos que son equivalentes $\mathrm{A}^\mathrm{I}-\mathrm{A}^\mathrm{II}=0$. Entonces, restando ambos lados:
+
+$$
+0 = P^{\mathrm{sat}}\int_{\underline{V}^L}^{\underline{V}^V}d\underline{V}-\int_{\underline{V}^L}^{\underline{V}^V}P(\underline{V},T)d\underline{V}
+$$
+
+Lo que es lo mismo que decir,
+
+$$
+0 = P^{\mathrm{sat}}\left(\underline{V}^V-\underline{V}^L\right)-\int_{\underline{V}^L}^{\underline{V}^V}P(\underline{V},T)d\underline{V}
+$$
+
+Ahora, hagamos la derivación desde **la energía libre de Gibbs**. A partir de la [ecuación fundamental @tbl-ecfundamentales], podemos escribir el diferencial de $G$ a temperatura constante $dT=0$, ya que estamos analizando la isolínea de temperatura.
+
+$$
+d\underline{G} = \underline{V}dP
+$$
+
+Con regla de la cadena $dP\underline{V}=\underline{V}dP+Pd\underline{V}$, reescribirmos la ecuación.
+
+$$
+d\underline{G} = dP\underline{V}-Pd\underline{V}
+$$
+
+Ahora integramos entre el punto de líquido saturado y vapor saturado. Recordar que estos puntos se encuentran a la misma presión $P^\mathrm{sat}$.
+
+$$
+\int_{G^L}^{G^V}d\underline{G} = \int_{P^\mathrm{sat}\underline{V}^L}^{P^\mathrm{sat}\underline{V}^V}dP\underline{V}-\int_{\underline{V}^L}^{\underline{V}^V}Pd\underline{V}
+$$
+
+Por la condición de equilibrio $G^V-G^L=0$. Por lo que finalmente, llegamos a la misma expresión de la áreas.
+
+$$
+0 = P^{\mathrm{sat}}\left(\underline{V}^V-\underline{V}^L\right)-\int_{\underline{V}^L}^{\underline{V}^V}P(\underline{V},T)d\underline{V}
+$$
+
+## Fugacidad como una herramienta matemática
+
