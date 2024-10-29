@@ -1,7 +1,6 @@
 ---
 title: "Modelos termodinámicos"
 format: html
-tbl-cap-location: bottom
 filters:
   - shinylive
 ---
@@ -19,9 +18,9 @@ En esta sección se espera que el alumno maneje conceptos tales como: Diagramas 
 
 Los fluidos, al estar compuestos de moléculas, tienen una energía intrínseca que les pertenece: la energía interna. En los sistema que estudiamos suele ser importante entender cómo la energía interna se transforma en otras formas de energía (calor, trabajo, energía cinética, entre otras). Ya que la relación entre ellas depende del sistema que estemos evaluando, utilizamos balances de energía para comprender lo que ocurre en un equipo o una planta química completa.
 
-::::: {layout="[0.65, 0.35]"}
+::::: {.columns}
 
-::::{#firstcol}
+:::: {.column width="68%" align=center}
 La ecuación generalizada,
 $$
 d\left(U + \frac{Mv^2}{2} + Mgh\right) = \delta W + \delta Q + \sum_{in} \delta m_{in}\left( \hat{H}_{in} + \frac{v^2_{in}}{2} + gh_{in} \right)
@@ -34,7 +33,10 @@ puede parecer compleja o tediosa de calcular. En este caso se considera un **sis
 
 ::::
 
-::::{#secondcol}
+:::: {.column width="2%"}
+::::
+
+:::: {.column width="30%"}
 
 ::: {.callout-note}
 ## Parámetros y variables
@@ -129,22 +131,38 @@ Fijémonos en la solución del ejercicio anterior. A pesar de que la entalpía q
 
 Las ecuaciones de estado relacionan las propiedades de presión ($P$), volúmen ($V$) y temperatura ($T$) en base a fundamentos teóricos del comportamiento molecular de los compuestos. En otras palabras, **las *EoS* explican el comportamiento macroscópico de los fluidos a partir de lo microscópico**. Entender en profundidad cada ecuación de estado no es la finalidad de este curso. Lo más importante es que entiendan los motivos por los cuales se utilizan y, también, que formen una idea general de los términos que aparecen en ellas.
 
+### Ecuaciones de estado típicas
+
+
+| | Ecuación de estado | Fórmula | |
+|---|:-:|:-:|---|
+| | Gas ideal | $$ P\underline{V} = RT $$ | |
+| | Van der Waals | $$ P = \frac{RT}{\underline{V}-b}-\frac{a}{\underline{V}^2} $$ | |
+| | Redlich-Kwong | $$ P = \frac{RT}{\underline{V}-b} - \frac{a}{\sqrt{T}\underline{V}\left(\underline{V}+b\right)} $$ | |
+| | Peng-Robinson | $$ P = \frac{RT}{\underline{V}-b} - \frac{\alpha a(T)}{\underline{V}^2+2b\underline{V}-b^2} $$ | |
+
+: Ecuaciones de Estado básicas y Cúbicas {tbl-colwidths="[10,20,60,10]" .hover}
+
 ### Términos asociados a los principios de Lennard-Jones
 
-::::: {layout="[0.65, 0.35]"}
+::::: {.columns}
 
-:::: {#firstcol}
+:::: {.column width="64%" align=center}
 
 \
 El potencial de Lennard-Jones es un modelo de interacción molecular que describe el comportamiento de atracción y repulsión entre dos moléculas.
 $$
 \Gamma = 4\varepsilon\left[\left(\frac{\sigma}{r}\right)^{12}-\left(\frac{\sigma}{r}\right)^{6}\right]
 $$
+
 A nosotros solo nos interesa saber que algunos modelos termodinámicos se basan en los principios propuestos por este modelo para mejorar su capacidad de predicción.
 
 ::::
 
-:::: {#secondcol}
+:::: {.column width="2%"}
+::::
+
+:::: {.column width="34%"}
 
 ::: {.callout-note}
 ## Parámetros y variables
@@ -160,16 +178,14 @@ A nosotros solo nos interesa saber que algunos modelos termodinámicos se basan 
 
 :::::
 
-[comment]: <> (Yo agregaría una tabla para explicar estos conceptos, y una explicación un poco más breve, podría ser algo como "Concepto" "símbolo" "Descripción")
+| Parámetro   |Significado   |
+|:-----------:|:-------------|
+| **Término atractivo $(a)$** | En las *EoS* tipo Van der Waals se incluye este término para representar la **atracción entre las moléculas**. Lennard-Jones propone que esta interacción es dependiente de la polaridad de las moléculas y de la distancia entre ellas (Basado en la Ley de Coulomb). |
+| **Término de exclusión por volumen $(b)$** | Este parámetro representa el volumen que **no** puede ocupar un molécula a causa de que otra se encuentre en dicho espacio. En términos de Lennard-Jones: a medida que una molécula se acerca a otra, la energía potencial repulsiva entre ellas tiende a infinito por lo que nunca se tocan. Por eso, este parámetro se conoce como el **término repulsivo**. |
+| **factor acéntrico $(\omega)$** | Este parámetro representa la **no esfericidad de las moléculas**. El supuesto de esfericidad es relativamente cierto para moléculas pequeñas, pero limita la aplicabilidad del modelo. |
+| **Efecto de la temperatura en la interacción molecular $(a\left[T\right])$** | La temperatura impacta directamente la forma en que las moléculas interactuan y se atraen. Ecuaciones como Peng-Robinson representan esta dependencia para mejorar su capacidad predictiva en distintas condiciones de operación. |
 
-* **Término atractivo ($a$)**: En las *EoS* tipo Van der Waals se incluye este término para representar la **atracción entre las moléculas**. Lennard-Jones propone que esta interacción es dependiente de la polaridad de las moléculas y de la distancia entre ellas.
-* **Término de exclusión por volumen ($b$)**: Este parámetro representa el volumen que no puede ocupar un molécula a causa de que otra se encuentre en dicho espacio. Es lógico pensar que este fenómeno ocurre; una molécula no puede ocupar un espacio que otra ya está ocupando. En términos de Lennard-Jones: a medida que una molécula se acerca a otra, la energía potencial repulsiva entre ellas tiende a infinito por lo que nunca se tocan. Por eso, este parámetro se conoce como el **término repulsivo**.
-
-### Otros términos
-
-Podemos seguir mejorando los modelos eliminando otros supuestos. Uno de ellos es que las moléculas son perfectamente esféricas. Esto es relativamente cierto para moléculas pequeñas, pero limita la aplicabilidad del modelo. Para arreglar este problema se utiliza el **factor acéntrico ($\omega$)**. En otras palabras, este parámetro representa la no esfercidad de las moléculas.
-
-Otro aspecto que no estamos considerando es el efecto de la temperatura. La temperatura impacta directamente la forma en que las moléculas interactuan y se atraen, por lo que podemos definir **la atracción/interacción como una función de T, tal que $a(T)$**. La ecuación de Peng-Robinson es un ejemplo de la aplicación de esta variación (entiéndase $\alpha(T)$ como una expansión del término de $a$).
+: Parámetros típicos en las ecuaciones de estado {tbl-colwidths="[20,80]" .hover}
 
 <br>
 
@@ -193,7 +209,7 @@ $$
 \text{donde,}~~a = 0.45724\frac{(RT_c)^2}{P_c}~;~~ b = 0.0778\frac{RT_c}{P_c}
 $$
 $$
-\alpha(T)=\left(1+\left(0.37464 + 1.54226\omega − 0.26992\omega^2\right)\times\left(1-T_r^{0.5}\right)\right)^2
+\alpha(T)=\left(1+\left(0.37464 + 1.54226\omega + 0.26992\omega^2\right)\times\left(1-T_r^{0.5}\right)\right)^2
 $$
 Notar que Peng-Robinson considera tanto los parámetros $a$ y $b$, como los parámetros $\omega$ y la dependencia de temperatura para el término de interacción. A continuación un gráfico comparativo entre ambas *EoS*.
 ```{shinylive-python}
@@ -358,7 +374,3 @@ Para definir correctamente el cambio de fase, necesitamos recurrir a la **energ�
 ¿Qué modelo predice mejor la curva de saturación? ¿Existen diferencias entre las presiones de saturación entre los modelos? ¿Qué puede decir sobre las predicciones en fase gaseosa? ¿Y en fase líquida?
 
 :::
-
-<br>
-
-hola

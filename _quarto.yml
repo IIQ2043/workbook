@@ -2,6 +2,7 @@ project:
   type: website
 
 website:
+  page-navigation: true
   back-to-top-navigation: false
   search:
     type: textbox
@@ -9,12 +10,21 @@ website:
   repo-url: https://github.com/IIQ2043/workbook
   repo-actions: source
 
+  page-footer: 
+    background: secondary
+    left: "2024, Ignacio Tabilo"
+    right:
+      - icon: github
+        href: https://github.com/IIQ2043/workbook
+      - icon: code-square
+        href: https://quarto.org/
+
   sidebar:
     alignment: center
     footer: "Material complementario"
     logo: logo.png
     title: "IIQ2043"
-    background: "none"
+    background: light
     collapse-level: 1
     style: docked
     contents:
