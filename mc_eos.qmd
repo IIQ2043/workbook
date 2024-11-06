@@ -96,12 +96,12 @@ Existen propiedades de estado que son de suma importancia para el estudio de la 
 
 | Propiedad              | Ecuación        | Variables naturales |
 |------------------------|-----------------|---------------------|
-| Energía interna        | $dU = TdS-PdV$  | $U(S,~V)$           |
-| Energía de Helmholtz   | $dA = SdT-PdV$  | $A(T,~V)$           |
-| Entalpía               | $dH = TdS+VdP$  | $H(S,~P)$           |
-| Energía libre de Gibbs | $dG = -SdT+VdP$ | $G(T,~P)$           |
+| Energía interna        | $d\underline{U} = Td\underline{S}-Pd\underline{V}$  | $\underline{U}(S,~\underline{V})$           |
+| Energía de Helmholtz   | $d\underline{A} = -\underline{S}dT-Pd\underline{V}$ | $\underline{A}(T,~\underline{V})$           |
+| Entalpía               | $d\underline{H} = Td\underline{S}+\underline{V}dP$  | $\underline{H}(\underline{S},~P)$           |
+| Energía libre de Gibbs | $d\underline{G} = -\underline{S}dT+\underline{V}dP$ | $\underline{G}(T,~P)$           |
 
-: Tabla: Ecuaciones fundamentales {.hover}
+: Tabla: Ecuaciones fundamentales {#tbl-ecfundamentales .hover}
 
 A partir de estas ecuaciones, las relaciones de Maxwell y las herramientas de cálculo que se aprenden en el curso, es posible describir los cambios en las propiedades de un estado a otro (para compuestos puros). De esta manera, podemos cumplir con nuestro objetivo de **relacionar la energía con propiedades medibles**. Pongamos a prueba esto a través de un ejercicio.
 
@@ -189,7 +189,7 @@ A nosotros solo nos interesa saber que algunos modelos termodinámicos se basan 
 
 <br>
 
-## Ejemplo: Diagrama PV para CO$_2$
+## Ejemplo: Diagrama PV para CO$_2$ {#sec-CO2}
 
 Pongamos a prueba la teoría con una modelación. Suponga que desea predecir la relación PVT para dióxido de carbono. Para esto usted usará dos ecuaciones de estado: **Van der Waals** y **Peng-Robinson**. La validación experimental se hará en base a la **curva de saturación** real de CO$_2$ (NIST). Las ecuaciones de estos modelos son las siguientes:
 
@@ -352,7 +352,7 @@ def server(input, output, session):
 
     plt.plot(vsat_exp, Psat_exp, c="#0e150d", label="Curva de saturación")
     plt.legend()
-    plt.xlabel("Volumen molar / cm$^3\cdot$mol$^{-1}$")
+    plt.xlabel("Volumen molar / cm$^3\\cdot$mol$^{-1}$")
     plt.ylabel("Presión / MPa")
     plt.xlim([50,380])
     plt.ylim([4,10])
@@ -374,3 +374,8 @@ Para definir correctamente el cambio de fase, necesitamos recurrir a la **energ�
 ¿Qué modelo predice mejor la curva de saturación? ¿Existen diferencias entre las presiones de saturación entre los modelos? ¿Qué puede decir sobre las predicciones en fase gaseosa? ¿Y en fase líquida?
 
 :::
+
+## Cierre:
+
+Cálculo de alguna propiedad termodinámica a partir del balance de energía de un sistema. Luego el alumno resuelve dicho sistema utilizando alguna EOS simple. (VdW por ejemplo). "A partir del balance de energía dervie una expresión para un sistema cerrado blablabla, luego resuelva X propiedad a la salida del sistema usando VdW o RK o PR"
+

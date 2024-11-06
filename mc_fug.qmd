@@ -6,11 +6,11 @@ filters:
   - shinylive
 ---
 
-El equilibrio es, a veces, más complejo de lo que creemos. Cuando hay cambio de fase, hablamos de **equilibrio de fases**, lo que implica algunas igualdades en las propiedades de los compuestos. Por ejemplo: **equilibrio térmico** $T^L=T^V$, **equilibrio mecánico** $P^L=P^V$ y **equilibrio químico** $\mu^L=\mu^V$. Al existir un balance entre las fuerzas del sistema diremos también que las **energías libres de Gibbs** se igualan, $G^L=G^V$. Existen varias formas de interpretar lo que ocurre en el equilibrio termodinámico; en este material de apoyo se buscará una aproximación gráfica que sea fácil de visualizar y consistente con el material anterior.
+El equilibrio es, a veces, más complejo de lo que creemos. Cuando hay cambio de fase, hablamos de **equilibrio de fases**, lo que implica algunas igualdades en las propiedades de los compuestos. Por ejemplo: **equilibrio térmico** $T^L=T^V$, **equilibrio mecánico** $P^L=P^V$ y **equilibrio químico** $\mu^L=\mu^V$. Al existir un balance entre las fuerzas del sistema, diremos también que las **energías libres de Gibbs** se igualan, $G^L=G^V$. Existen varias formas de interpretar lo que ocurre en el equilibrio termodinámico; en este material de apoyo se buscará una aproximación gráfica que sea fácil de visualizar y consistente con el material anterior.
 
 ## Motivación: Presión de saturación a partir de una *EoS*
 
-Recordemos nuestro [gráfico PV para CO$_2$ @sec-CO2]. Bajo la temperatura crítica ($T_c$), las ecuaciones de estado se comportaban de manera contraintuitiva. En vez de seguir una línea recta, como lo esperaríamos en cambio de fase, se formaba una curva con vueltas correspondientes a una ecuación cuadrática. Esto último es entendible dada la naturaleza de las ecuaciones de estado que estudiamos en el curso, sin embargo, no nos entrega una explicación sobre el cambio de fase.
+Recordemos nuestro [gráfico PV para CO$_2$](./mc_eos.qmd#sec-CO2). Bajo la temperatura crítica ($T_c$), las ecuaciones de estado se comportaban de manera contraintuitiva. En vez de seguir una línea recta, como lo esperaríamos en cambio de fase, se formaba una curva con vueltas correspondientes a una ecuación cuadrática. Esto último, es entendible dada la naturaleza de las ecuaciones de estado que estudiamos en el curso, sin embargo, no nos entrega una explicación sobre el cambio de fase.
 
 :::: {.columns}
 
@@ -110,7 +110,7 @@ $$
 0 = P^{\mathrm{sat}}\left(\underline{V}^V-\underline{V}^L\right)-\int_{\underline{V}^L}^{\underline{V}^V}P(\underline{V},T)d\underline{V}
 $$
 
-Ahora, hagamos la derivación desde **la energía libre de Gibbs**. A partir de la [ecuación fundamental @tbl-ecfundamentales], podemos escribir el diferencial de $G$ a temperatura constante $dT=0$, ya que estamos analizando la isolínea de temperatura.
+Ahora, hagamos la derivación desde **la energía libre de Gibbs**. A partir de la [tabla de ecuaciones fundamentales](./mc_eos.qmd#tbl-ecfundamentales), podemos escribir el diferencial de $G$ a temperatura constante $dT=0$, ya que estamos analizando la isolínea de temperatura.
 
 $$
 d\underline{G} = \underline{V}dP
@@ -128,11 +128,103 @@ $$
 \int_{G^L}^{G^V}d\underline{G} = \int_{P^\mathrm{sat}\underline{V}^L}^{P^\mathrm{sat}\underline{V}^V}dP\underline{V}-\int_{\underline{V}^L}^{\underline{V}^V}Pd\underline{V}
 $$
 
-Por la condición de equilibrio $G^V-G^L=0$. Por lo que finalmente, llegamos a la misma expresión de la áreas.
+Por la condición de equilibrio $G^V-G^L=0$. Por lo que finalmente, llegamos a la misma expresión de las áreas.
 
 $$
 0 = P^{\mathrm{sat}}\left(\underline{V}^V-\underline{V}^L\right)-\int_{\underline{V}^L}^{\underline{V}^V}P(\underline{V},T)d\underline{V}
 $$
 
+[comment]: <> (revisar esta sección a futuro, quizá es mucho mejor dividir el texto en dos columnas: c1 demostración con áreas, c2 demostración con gibbs. Añadiría un paso más en la parte de Gibbs.)
+
 ## Fugacidad como una herramienta matemática
 
+En el ejemplo anterior pudimos encontrar facilmente la condición de equilibrio del sistema: $G^L = G^V$. No obstante, igualar las energías de Gibbs resulta sumamente complejo en sistemas multicomponentes. Recordando lo visto en las propiedades multicomponentes [link], las [ecuaciones fundamentales](./mc_eos.qmd#tbl-ecfundamentales) dependerán también del potencial químico. El problema es el siguiente: **Los potenciales químicos tienden a ser negativamente infinitos a medida que la presión se hace 0. Y los potenciales químicos en mezclas tienden a ser negativamente infinitos a medida que la concentración de dicho compuesto se hace 0.**
+
+Estas limitaciones son coincidentes con las **condiciones ideales** (baja presión y dilución infinita). Por lo que nuestra condición de equilibrio es inconveniente. Para arreglar este problema, se inventó **la fugacidad**. Para un compuesto puro $i$, la fugacidad viene dada por:
+
+$$
+\underline{G_i} = \underline{G_i}^0+RT\ln\frac{f_i}{P}
+$$ {#eq-gibbs-fug}
+
+Por este motivo, en el contexto del curso es preferible entender la fugacidad como una herramienta matemática. Entonces, podemos "arreglar" nuestra **condición de equilibrio vapor-líquido**:
+
+$$
+\underline{G}^L = \underline{G}^V \quad \Big/ \quad -\underline{G}^0
+$$
+
+$$
+\underline{G}^L - \underline{G}^0 = \underline{G}^V - \underline{G}^0 \quad \Big/ \quad \cdot\frac{1}{RT}
+$$
+
+$$
+\frac{\underline{G}^L-\underline{G}^0}{RT} = \frac{\underline{G}^V-\underline{G}^0}{RT} \quad \Big/ \quad \exp\left(\right)
+$$
+
+Desde la [equación @eq-gibbs-fug] podemos escribir la igualdad como:
+
+$$
+\frac{f^L}{P^{sat}} = \frac{f^V}{P^{sat}}
+$$
+
+Lo que es normalmente escrito usando el **coeficiente de fugacidad $\varphi \equiv f/P$**.
+
+$$
+\varphi^L = \varphi^V = \varphi^{sat}
+$$
+
+::: {.callout-tip appearance="simple"}
+
+## Compuestos en mezclas
+
+En el caso de mezclas, para un compuesto $i$ la relación entre la **energía libre de Gibbs parcial molar $(\bar{G}_i)$** con la **fugacidad en mezclas $(\hat{f}_i)$** viene dada por,
+
+$$
+\bar{G}_i = \bar{G}^0_i + RT\ln\frac{\hat{f}_i}{y_iP}
+$$
+
+Similarmente, el coeficiente de fugacidad será:
+
+$$
+\hat{\varphi}_i \equiv \frac{\hat{f}_i}{y_iP}
+$$
+
+:::
+
+
+## Coeficiente de fugacidad para las EoS
+
+Si quisieramos conocer la fugacidad para compuestos puros o en mezcla a partir de ecuaciones de estado, podríamos escribir la [ecuación @eq-gibbs-fug] como:
+
+$$
+RT\ln\varphi_i = \underline{G_i}(T,P) - \underline{G_i}^0(T,P)
+$$
+
+Ya que $\phi_i$ se relaciona por definición con **la energía de Gibbs residual isotérmica** (similar a lo que hicimos al inicio de esta sección); podemos utilizar la [ecuación fundamental para Gibbs](./mc_eos.qmd#tbl-ecfundamentales) con $dT = 0$. De esta forma llegamos a la siguiente expresión:
+
+$$
+RT\ln\varphi_i = \int_0^P \left(\underline{V_i} - \frac{RT}{P}\right)dP
+$$
+
+Similarmente para compuestos en mezclas:
+
+$$
+RT\ln\hat{\varphi}_i = \int^P_0\left(\bar{V}_i-\frac{RT}{P}\right)
+$$
+
+Ya que las *EoS* suelen ser explícitas para la presión, podemos utilizar relaciones de Maxwell y prodiedades de las integrales y derivadas para dejar las ecuaciones expresadas en función de P. Expresamos finalmente una relación conveniente entre el **coeficiente de fugacidad** y las **EoS**.
+
+$$
+\mathrm{Para~compuestos~puros:}\quad RT\ln\varphi_i = -\int_\infty^V\left[\left(\frac{\partial P}{\partial n}\right)_{T,~V}-\frac{RT}{V}\right]dV - RT\ln Z
+$$
+
+$$
+\mathrm{Para~compuestos~en~mezclas:}\quad RT\ln\hat{\varphi}_i = -\int_\infty^V\left[\left(\frac{\partial P}{\partial n_i}\right)_{T,~V,~n_j}-\frac{RT}{V}\right]dV - RT\ln Z
+$$
+
+::: {.callout-warning}
+
+## Sobre la notación
+
+Importante notar que en las últimas dos ecuaciones el volumen está expresado como **propiedad extensiva** $(\mathrm{m}^3)$.
+
+:::
