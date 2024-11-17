@@ -1,0 +1,45 @@
+---
+title: "Glosario"
+format: html
+filters:
+  - shinylive
+---
+
+Aquí encontrarán algunos conceptos básicos y la simbología que se utilizará a lo largo de este material complementario. 
+
+## Propiedades de los compuestos puros
+
+:::: {.columns}
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="90%"}
+
+| Símbolo | Significado | Símbolo | Significado |
+|:-:|:--|:-:|:--|
+| $P$ | Presión $\left[\mathrm{Pa}\right]$ | $T$ | Temperatura $\left[\mathrm{K}\right]$ |
+| $\mu$ | Potencial químico $\left[\mathrm{J}/\mathrm{mol}\right]$ | $n$ | Moles $\left[\mathrm{mol}\right]$ |
+| $W$ | Trabajo $\left[\mathrm{J}\right]$ | $Q$ | Calor $\left[\mathrm{J}\right]$ |
+| $A$ | Energía de Helmholz, extensiva $\left[\mathrm{J}\right]$ | $G$ | Energía libre de Gibbs, extensiva $\left[\mathrm{J}\right]$ | 
+| $\underline{A}$ | Energía de Helmolzt molar $\left[\mathrm{J}/\mathrm{mol}\right]$ | $\underline{G}$ | Energía libre de Gibbs molar $\left[\mathrm{J}/\mathrm{mol}\right]$ | 
+| $\hat{A}$ | Energía de Helmolzt másica $\left[\mathrm{J}/\mathrm{kg}\right]$ | $\hat{G}$ | Energía libre de Gibbs másica $\left[\mathrm{J}/\mathrm{kg}\right]$ |
+| $H$ | Entalpía, extensiva $\left[\mathrm{J}\right]$ | $U$ | Energía interna, extensiva $\left[\mathrm{J}\right]$ |
+| $\underline{H}$ | Entalpía molar $\left[\mathrm{J}/\mathrm{mol}\right]$ | $\underline{U}$ | Energía interna molar $\left[\mathrm{J}/\mathrm{mol}\right]$ |
+| $\hat{H}$ | Entalpía másica $\left[\mathrm{J}/\mathrm{kg}\right]$ | $\hat{U}$ | Energía interna másica $\left[\mathrm{J}/\mathrm{kg}\right]$ |
+| $S$ | Entropía, extensiva $\left[\mathrm{J}/\mathrm{K}\right]$ | $V$ | Volumen, extensivo $\left[\mathrm{m}^3\right]$ |
+| $\underline{S}$ | Entropía molar $\left[\mathrm{J}/\mathrm{K}\cdot\mathrm{mol}\right]$ | $\underline{V}$ | Volumen molar $\left[\mathrm{m}^3/\mathrm{mol}\right]$ |
+| $\hat{S}$ | Entropía másica $\left[\mathrm{J}/\mathrm{K}\cdot\mathrm{kg}\right]$ |  $\hat{V}$ | Volumen másico $\left[\mathrm{m}^3/\mathrm{kg}\right]$ |
+| $M$ | Propiedad termodinámica extensiva cualquiera (e.g. $G$) | $M^{IG}$ | Propiedad para gas ideal (e.g. $A^{IG}$)
+| $\underline{M}$, $\hat{M}$  | Propiedad termodinámica intesiva cualquiera (e.g. $\underline{U}$, $\hat{H}$) | $M^0$ | Propiedad para gas ideal o para compuesto puro (e.g. $G^0$) |
+| $M^{\mathrm{sat}}$ | Propiedad en saturación (e.g. $P^{\mathrm{sat}}$) | $M^V$, $M^L$ o $M^S$ | Propiedad en fase gaseosa, líquida o sólida respectivamente. |
+| $M_c$ | Propiedad crítica (e.g. $T_c$) | $M_r$ | Propiedad reducida (e.g. $P_r$) |
+
+: Nomenclatura para compuestos puros {#tbl-simbol-pure .hover}
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::::

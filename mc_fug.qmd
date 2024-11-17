@@ -1,14 +1,173 @@
 ---
 title: "Fugacidad"
 format: html
-tbl-cap-location: bottom
 filters:
   - shinylive
 ---
 
-El equilibrio es, a veces, más complejo de lo que creemos. Cuando hay cambio de fase, hablamos de **equilibrio de fases**, lo que implica algunas igualdades en las propiedades de los compuestos. Por ejemplo: **equilibrio térmico** $T^L=T^V$, **equilibrio mecánico** $P^L=P^V$ y **equilibrio químico** $\mu^L=\mu^V$. Al existir un balance entre las fuerzas del sistema, diremos también que las **energías libres de Gibbs** se igualan, $G^L=G^V$. Existen varias formas de interpretar lo que ocurre en el equilibrio termodinámico; en este material de apoyo se buscará una aproximación gráfica que sea fácil de visualizar y consistente con el material anterior.
+Es fácil reconocer el proceso de cambio de fase de manera gráfica, donde la temperatura ($T$) y la presión ($P$), permanecen constantes bajo la **curva de saturación**. Esto es análogo a decir que, en condiciones de operación bajo la **temperatura y presión crítica**, existe cambio de fase en las condiciones de saturación. 
 
-## Motivación: Presión de saturación a partir de una *EoS*
+La [figura @fig-phs_change] muestra el cambio de fase en un gráfico PV (*Temperatura constante*) de metano:
+
+```{python}
+#| label: fig-phs_change
+#| echo: false
+#| fig-cap: "Cambio de fase para metano en un gráfico P-V"
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import fsolve
+
+############# NIST #############
+P_sat = [
+    0.02, 0.042896, 0.065792, 0.088688, 0.11158, 0.13448, 0.15738, 0.18027, 0.20317, 0.22606,
+    0.24896, 0.27186, 0.29475, 0.31765, 0.34054, 0.36344, 0.38634, 0.40923, 0.43213, 0.45502,
+    0.47792, 0.50082, 0.52371, 0.54661, 0.5695, 0.5924, 0.6153, 0.63819, 0.66109, 0.68398,
+    0.70688, 0.72978, 0.75267, 0.77557, 0.79846, 0.82136, 0.84426, 0.86715, 0.89005, 0.91294,
+    0.93584, 0.95874, 0.98163, 1.0045, 1.0274, 1.0503, 1.0732, 1.0961, 1.119, 1.1419, 1.1648,
+    1.1877, 1.2106, 1.2335, 1.2564, 1.2793, 1.3022, 1.3251, 1.348, 1.3709, 1.3938, 1.4167,
+    1.4396, 1.4624, 1.4853, 1.5082, 1.5311, 1.554, 1.5769, 1.5998, 1.6227, 1.6456, 1.6685,
+    1.6914, 1.7143, 1.7372, 1.7601, 1.783, 1.8059, 1.8288, 1.8517, 1.8746, 1.8975, 1.9204,
+    1.9433, 1.9662, 1.9891, 2.012, 2.0348, 2.0577, 2.0806, 2.1035, 2.1264, 2.1493, 2.1722,
+    2.1951, 2.218, 2.2409, 2.2638, 2.2867, 2.3096, 2.3325, 2.3554, 2.3783, 2.4012, 2.4241,
+    2.447, 2.4699, 2.4928, 2.5157, 2.5386, 2.5615, 2.5844, 2.6072, 2.6301, 2.653, 2.6759,
+    2.6988, 2.7217, 2.7446, 2.7675, 2.7904, 2.8133, 2.8362, 2.8591, 2.882, 2.9049, 2.9278,
+    2.9507, 2.9736, 2.9965, 3.0194, 3.0423, 3.0652, 3.0881, 3.111, 3.1339, 3.1568, 3.1796,
+    3.2025, 3.2254, 3.2483, 3.2712, 3.2941, 3.317, 3.3399, 3.3628, 3.3857, 3.4086, 3.4315,
+    3.4544, 3.4773, 3.5002, 3.5231, 3.546, 3.5689, 3.5918, 3.6147, 3.6376, 3.6605, 3.6834,
+    3.7063, 3.7292, 3.752, 3.7749, 3.7978, 3.8207, 3.8436, 3.8665, 3.8894, 3.9123, 3.9352,
+    3.9581, 3.981, 4.0039, 4.0268, 4.0497, 4.0726, 4.0955, 4.1184, 4.1413, 4.1642, 4.1871,
+    4.21, 4.2329, 4.2558, 4.2787, 4.3016, 4.3244, 4.3473, 4.3702, 4.3931, 4.416, 4.4389,
+    4.4618, 4.4847, 4.5076, 4.5305, 4.5534, 4.5763, 4.5992
+]
+V_L = [
+    0.036003, 0.036806, 0.037348, 0.037777, 0.038141, 0.038461, 0.03875, 0.039016, 0.039263,
+    0.039495, 0.039715, 0.039924, 0.040125, 0.040318, 0.040504, 0.040684, 0.040859, 0.041029,
+    0.041195, 0.041357, 0.041516, 0.041671, 0.041824, 0.041974, 0.042121, 0.042266, 0.04241,
+    0.042551, 0.04269, 0.042828, 0.042964, 0.043099, 0.043233, 0.043365, 0.043496, 0.043626,
+    0.043755, 0.043883, 0.04401, 0.044137, 0.044262, 0.044387, 0.044511, 0.044635, 0.044758,
+    0.04488, 0.045002, 0.045124, 0.045245, 0.045366, 0.045486, 0.045606, 0.045726, 0.045845,
+    0.045965, 0.046084, 0.046203, 0.046321, 0.04644, 0.046558, 0.046677, 0.046795, 0.046913,
+    0.047032, 0.04715, 0.047268, 0.047386, 0.047505, 0.047623, 0.047742, 0.04786, 0.047979,
+    0.048098, 0.048217, 0.048337, 0.048456, 0.048576, 0.048696, 0.048816, 0.048936, 0.049057,
+    0.049178, 0.0493, 0.049421, 0.049544, 0.049666, 0.049789, 0.049912, 0.050036, 0.05016,
+    0.050285, 0.05041, 0.050535, 0.050661, 0.050788, 0.050915, 0.051043, 0.051171, 0.0513,
+    0.05143, 0.05156, 0.051691, 0.051823, 0.051955, 0.052088, 0.052222, 0.052356, 0.052492,
+    0.052628, 0.052765, 0.052903, 0.053042, 0.053181, 0.053322, 0.053464, 0.053606, 0.05375,
+    0.053895, 0.054041, 0.054188, 0.054336, 0.054485, 0.054635, 0.054787, 0.05494, 0.055095,
+    0.05525, 0.055407, 0.055566, 0.055726, 0.055888, 0.056051, 0.056216, 0.056382, 0.05655,
+    0.05672, 0.056892, 0.057066, 0.057241, 0.057419, 0.057599, 0.057781, 0.057965, 0.058151,
+    0.05834, 0.058531, 0.058725, 0.058921, 0.05912, 0.059322, 0.059527, 0.059735, 0.059946,
+    0.060161, 0.060379, 0.0606, 0.060825, 0.061054, 0.061287, 0.061524, 0.061766, 0.062012,
+    0.062263, 0.062519, 0.062781, 0.063048, 0.063321, 0.0636, 0.063886, 0.064178, 0.064478,
+    0.064786, 0.065102, 0.065427, 0.065761, 0.066106, 0.066461, 0.066828, 0.067207, 0.0676,
+    0.068008, 0.068432, 0.068873, 0.069334, 0.069817, 0.070323, 0.070856, 0.07142, 0.072018,
+    0.072656, 0.07334, 0.074079, 0.074884, 0.075771, 0.076759, 0.077882, 0.079189, 0.080768,
+    0.0828, 0.08579, 0.098628
+]
+V_V = [
+    39.08, 19.416, 13.122, 9.9801, 8.0838, 6.8098, 5.8924, 5.1987, 4.6551, 4.217,
+    3.8561, 3.5534, 3.2956, 3.0734, 2.8798, 2.7094, 2.5583, 2.4234, 2.3021, 2.1924,
+    2.0928, 2.0018, 1.9185, 1.8417, 1.7709, 1.7052, 1.6443, 1.5874, 1.5344, 1.4847,
+    1.438, 1.3942, 1.3529, 1.3139, 1.277, 1.2421, 1.2089, 1.1775, 1.1475, 1.119,
+    1.0918, 1.0659, 1.0411, 1.0173, 0.99461, 0.97281, 0.9519, 0.93181, 0.9125, 0.89392,
+    0.87603, 0.85879, 0.84217, 0.82613, 0.81064, 0.79567, 0.7812, 0.7672, 0.75365, 0.74053,
+    0.72781, 0.71547, 0.70351, 0.69189, 0.68061, 0.66966, 0.65901, 0.64865, 0.63858, 0.62877,
+    0.61923, 0.60993, 0.60087, 0.59204, 0.58343, 0.57503, 0.56683, 0.55883, 0.55101, 0.54338,
+    0.53593, 0.52864, 0.52151, 0.51454, 0.50773, 0.50105, 0.49453, 0.48813, 0.48187, 0.47574,
+    0.46973, 0.46384, 0.45806, 0.4524, 0.44685, 0.4414, 0.43606, 0.43081, 0.42566, 0.4206,
+    0.41563, 0.41075, 0.40596, 0.40125, 0.39661, 0.39206, 0.38758, 0.38318, 0.37885, 0.37458,
+    0.37039, 0.36626, 0.36219, 0.35819, 0.35425, 0.35036, 0.34654, 0.34277, 0.33905, 0.33539,
+    0.33178, 0.32822, 0.32471, 0.32125, 0.31783, 0.31446, 0.31113, 0.30785, 0.30461, 0.30141,
+    0.29824, 0.29512, 0.29204, 0.28899, 0.28597, 0.283, 0.28005, 0.27714, 0.27426, 0.27142,
+    0.2686, 0.26581, 0.26306, 0.26033, 0.25762, 0.25495, 0.2523, 0.24967, 0.24707, 0.24449,
+    0.24194, 0.2394, 0.23689, 0.2344, 0.23193, 0.22947, 0.22704, 0.22462, 0.22222, 0.21984,
+    0.21747, 0.21512, 0.21277, 0.21045, 0.20813, 0.20583, 0.20353, 0.20125, 0.19897, 0.1967,
+    0.19444, 0.19218, 0.18993, 0.18768, 0.18543, 0.18319, 0.18094, 0.17868, 0.17643, 0.17416,
+    0.17189, 0.16961, 0.16731, 0.16499, 0.16266, 0.1603, 0.15791, 0.15548, 0.15301, 0.15049,
+    0.14791, 0.14525, 0.1425, 0.13964, 0.13663, 0.13342, 0.12995, 0.12608, 0.12157, 0.11573,
+    0.098628
+]
+################################
+def pr_eos(v,T):
+    R = 8.314413 #J/molK
+    Tc = 191.15 #K
+    Pc = 4.641e6 #Pa
+    omega = 0.0115
+
+    a = 0.45724 * ((R*Tc)**2)/Pc
+    alpha = (1 + (0.37464 + 1.54226*omega - 0.26992*omega**2)*(1-(T/Tc)**(1/2)))**2
+    b = 0.0778 * (R*Tc)/Pc
+
+    p = (R*T)/(v-b) - (a*alpha)/(v**2+2*b*v-b**2)
+    return p
+    
+def solver_V(v):
+    Psat = 3.5e6 #Pa; sat @181.94K
+    return pr_eos(v,T) - Psat
+
+
+T = 181.94 #K
+v0s = [0.055e-3,0.314e-3] # encontrar V^L y V^V
+vsol = []
+
+for v0 in v0s:
+    v = fsolve(solver_V,v0)
+    vsol.append(v[0])
+
+V_aux = [] #cm3/mol
+V = np.linspace(0.5*vsol[0], vsol[0], 100) #m3/mol
+P = [] #MPa
+for v in V:
+    P.append(pr_eos(v,T)*1e-6)
+    V_aux.append(v*1e6)
+
+P.append(3.5)
+V_aux.append(0.23689e3)
+
+V = np.linspace(250e-6, 600e-6, 100) #m3/mol
+for v in V:
+    P.append(pr_eos(v,T)*1e-6)
+    V_aux.append(v*1e6)
+
+
+plt.plot(V_aux, P, c="#D62246")
+plt.plot([x*1e3 for x in V_L], P_sat, c="#1f2338")
+plt.plot([x*1e3 for x in V_V], P_sat, c="#1f2338")
+
+plt.xlabel("Volumen molar / cm$^3\\cdot$mol$^{-1}$")
+plt.ylabel("Presión / MPa")
+plt.xlim([0,0.6e3])
+plt.ylim([2,6])
+plt.show()
+```
+
+
+Como se puede observar, en el lado izquierdo de la curva de saturación tenemos una línea casi horizontal, indicando la propiedad de volumen incompresible ($d\underline{V}/dP\approx0$) de la fase líquida. Y, al lado derecho, nos encontramos con la fase vapor.
+
+:::: {.columns}
+
+::: {.column width="68%"}
+
+Si tomamos los puntos donde la isoterma intercepta la curva de saturación, obtendremos dos volúmenes $\underline{V}^L$ para la fase líquida y $\underline{V}^V$ para la fase vapor. Continuando con esta notación, queda claro que $T^L=T^V$ y $P^L=P^V$.
+
+No obstante, en equilibrio existe una propiedad más interesante: **la energía libre de Gibbs**. Si recordamos [las ecuaciones fundamentales](./mc_eos.qmd#tbl-ecfundamentales), las **variables naturales de $\underline{G}$** son la presión y la temperatura. Entonces, en equilibrio $d\underline{G}=0$ o $\underline{G}^L=\underline{G}^V$.
+:::
+::: {.column width="3%"}
+:::
+::: {.column width="29%" align=top}
+::: {.callout-note}
+## Notar que:
+$\underline{V}^L\ll \underline{V}^V$ para presiones y temperaturas alejadas del punto crítico.
+:::
+:::
+::::
+
+La energía libre de Gibbs es **la condición de equilibrio más imporante** para cambios de fase, y como se explica en la sección 8.2.2 de *<a href="https://bmdigitales-bibliotecas-uc-cl.pucdechile.idm.oclc.org/html5/FUNDAMENTALS%20OF%20CHEMICAL%20ENGINEERING%20THERMODYNAMICS%20K.%20D.%20DAHM/">Fundamentals of Chemical Engineering Thermodynamics</a>*, $dG=0$ es un mínimo.
+
+<br></br>
+
+## Presión de saturación a partir de una *EoS*
 
 Recordemos nuestro [gráfico PV para CO$_2$](./mc_eos.qmd#sec-CO2). Bajo la temperatura crítica ($T_c$), las ecuaciones de estado se comportaban de manera contraintuitiva. En vez de seguir una línea recta, como lo esperaríamos en cambio de fase, se formaba una curva con vueltas correspondientes a una ecuación cuadrática. Esto último, es entendible dada la naturaleza de las ecuaciones de estado que estudiamos en el curso, sin embargo, no nos entrega una explicación sobre el cambio de fase.
 
@@ -86,9 +245,15 @@ La [figura @fig-isofug] ejemplifica las áreas formadas en equilibrio de fases p
 
 ### ¿Es lo mismo igualar las áreas a igualar $G$?
 
-Siempre que encontremos las áreas equivalentes en el gráfico, tendremos las propiedades en equilibrio de presión, temperatura y volumen. Pero, ¿es lo mismo que igualar la energía libre de Gibbs? La respuesta es que sí. Demostrémoslo utilizando la [figura @fig-isofug].
+Siempre que encontremos las áreas equivalentes en el gráfico, tendremos las propiedades en equilibrio de presión, temperatura y volumen. Pero, ¿es lo mismo que igualar la energía libre de Gibbs? La respuesta es que sí.
 
-Sean las áreas $\mathrm{A}^\mathrm{I}$ y $\mathrm{A}^\mathrm{II}$:
+:::: {.columns}
+
+::: {.column width="48%"}
+
+#### Cálculo a partir de las áreas
+
+Utilizando la [figura @fig-isofug], el área $\mathrm{A}^\mathrm{I}$ y será la resta entre el área formada por la línea recta de presión y el área formada por la curva de la *EoS*. Mientras que para $\mathrm{A}^\mathrm{II}$, la resta estará invertida.
 
 $$
 \mathrm{A}^\mathrm{I}=\int_{\underline{V}^L}^{\underline{V}^u}P^{\mathrm{sat}}d\underline{V}-\int_{\underline{V}^L}^{\underline{V}^u}P(\underline{V},T)d\underline{V}
@@ -110,7 +275,17 @@ $$
 0 = P^{\mathrm{sat}}\left(\underline{V}^V-\underline{V}^L\right)-\int_{\underline{V}^L}^{\underline{V}^V}P(\underline{V},T)d\underline{V}
 $$
 
-Ahora, hagamos la derivación desde **la energía libre de Gibbs**. A partir de la [tabla de ecuaciones fundamentales](./mc_eos.qmd#tbl-ecfundamentales), podemos escribir el diferencial de $G$ a temperatura constante $dT=0$, ya que estamos analizando la isolínea de temperatura.
+:::
+
+::: {.column width="4%"}
+
+:::
+
+::: {.column width="48%"}
+
+#### Cálculo a partir de Gibbs
+
+A partir de la [tabla de ecuaciones fundamentales](./mc_eos.qmd#tbl-ecfundamentales), podemos escribir el diferencial de $G$ a temperatura constante $dT=0$, ya que estamos analizando la isolínea de temperatura ($P$ no es constante para la *EoS*).
 
 $$
 d\underline{G} = \underline{V}dP
@@ -134,7 +309,12 @@ $$
 0 = P^{\mathrm{sat}}\left(\underline{V}^V-\underline{V}^L\right)-\int_{\underline{V}^L}^{\underline{V}^V}P(\underline{V},T)d\underline{V}
 $$
 
-[comment]: <> (revisar esta sección a futuro, quizá es mucho mejor dividir el texto en dos columnas: c1 demostración con áreas, c2 demostración con gibbs. Añadiría un paso más en la parte de Gibbs.)
+
+:::
+
+::::
+
+<!-- (revisar esta sección a futuro, quizá es mucho mejor dividir el texto en dos columnas: c1 demostración con áreas, c2 demostración con gibbs. Añadiría un paso más en la parte de Gibbs.) -->
 
 ## Fugacidad como una herramienta matemática
 

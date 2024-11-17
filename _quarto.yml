@@ -1,6 +1,6 @@
 project:
   type: website
-
+lang: es
 website:
   page-navigation: true
   back-to-top-navigation: false
@@ -29,8 +29,9 @@ website:
     style: docked
     contents:
       - index.qmd
-      - text: "Tópicos"
+      - text: "Fundamentos"
       - text: "---"
+      - mc_glos.qmd
       - mc_eos.qmd
       - mc_fug.qmd
 

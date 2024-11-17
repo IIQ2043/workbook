@@ -72,16 +72,10 @@ $$
  
  El siguiente paso para evaluar nuestro sistema sería cuantificar los cambios energéticos. Esto se consigue **midiendo** las variaciones de energía. Aquí que surge un problema: no es posible medir la energía interna $U$. Esto último no se puede hacer de forma directa, y en consecuencia, existe una necesidad de definir las propiedades termodinámicas en función de **unidades medibles**: presión ($P$), volumen ($V$) y temperatura ($T$).
 
-::: {.callout-important collapse="true"}
+::: {.callout-important}
 ## Sobre la notación
 
-En esta página se utilizará la siguiente notación.
-
-Volúmen: $V~\text{(m}^3\text{)}$
-
-Volúmen másico: $\hat{V}~\text{(m}^3\cdot\text{kg}^{-1}\text{)}$
-
-Volúmen molar: $\underline{V}~\text{(m}^3\cdot\text{mol}^{-1}\text{)}$
+Es importante considerar la simbología constantemente a lo largo de este material. [Ir al glosario](./mc_glos.qmd#tbl-simbol-pure).
 
 :::
 
@@ -101,7 +95,7 @@ Existen propiedades de estado que son de suma importancia para el estudio de la 
 | Entalpía               | $d\underline{H} = Td\underline{S}+\underline{V}dP$  | $\underline{H}(\underline{S},~P)$           |
 | Energía libre de Gibbs | $d\underline{G} = -\underline{S}dT+\underline{V}dP$ | $\underline{G}(T,~P)$           |
 
-: Tabla: Ecuaciones fundamentales {#tbl-ecfundamentales .hover}
+: Ecuaciones fundamentales {#tbl-ecfundamentales .hover}
 
 A partir de estas ecuaciones, las relaciones de Maxwell y las herramientas de cálculo que se aprenden en el curso, es posible describir los cambios en las propiedades de un estado a otro (para compuestos puros). De esta manera, podemos cumplir con nuestro objetivo de **relacionar la energía con propiedades medibles**. Pongamos a prueba esto a través de un ejercicio.
 
