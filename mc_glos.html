@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Inicio</title>
+<title>Glosario</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./mc_eos.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -81,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Inicio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mc_glos.html">Glosario</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -114,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inicio</span></a>
   </div>
 </li>
@@ -124,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mc_glos.html" class="sidebar-item-text sidebar-link">
+  <a href="./mc_glos.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Glosario</span></a>
   </div>
 </li>
@@ -147,20 +177,26 @@ ul.task-list li input[type="checkbox"] {
 </div></div></nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul>
+  <li><a href="#propiedades-de-los-compuestos-puros" id="toc-propiedades-de-los-compuestos-puros" class="nav-link active" data-scroll-target="#propiedades-de-los-compuestos-puros">Propiedades de los compuestos puros</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/IIQ2043/workbook/blob/main/mc_glos.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Inicio</h1>
+<h1 class="title">Glosario</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -172,10 +208,143 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<p>Aquí encontrarán algunos conceptos básicos y la simbología que se utilizará a lo largo de este material complementario.</p>
+<section id="propiedades-de-los-compuestos-puros" class="level2">
+<h2 class="anchored" data-anchor-id="propiedades-de-los-compuestos-puros">Propiedades de los compuestos puros</h2>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:90%;">
+<div id="tbl-simbol-pure" class="hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-simbol-pure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-hover table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: center;">Símbolo</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(P\)</span></td>
+<td style="text-align: left;">Presión <span class="math inline">\(\left[\mathrm{Pa}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: left;">Temperatura <span class="math inline">\(\left[\mathrm{K}\right]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;">Potencial químico <span class="math inline">\(\left[\mathrm{J}/\mathrm{mol}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n\)</span></td>
+<td style="text-align: left;">Moles <span class="math inline">\(\left[\mathrm{mol}\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(W\)</span></td>
+<td style="text-align: left;">Trabajo <span class="math inline">\(\left[\mathrm{J}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Q\)</span></td>
+<td style="text-align: left;">Calor <span class="math inline">\(\left[\mathrm{J}\right]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(A\)</span></td>
+<td style="text-align: left;">Energía de Helmholz, extensiva <span class="math inline">\(\left[\mathrm{J}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(G\)</span></td>
+<td style="text-align: left;">Energía libre de Gibbs, extensiva <span class="math inline">\(\left[\mathrm{J}\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\underline{A}\)</span></td>
+<td style="text-align: left;">Energía de Helmolzt molar <span class="math inline">\(\left[\mathrm{J}/\mathrm{mol}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\underline{G}\)</span></td>
+<td style="text-align: left;">Energía libre de Gibbs molar <span class="math inline">\(\left[\mathrm{J}/\mathrm{mol}\right]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\hat{A}\)</span></td>
+<td style="text-align: left;">Energía de Helmolzt másica <span class="math inline">\(\left[\mathrm{J}/\mathrm{kg}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\hat{G}\)</span></td>
+<td style="text-align: left;">Energía libre de Gibbs másica <span class="math inline">\(\left[\mathrm{J}/\mathrm{kg}\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(H\)</span></td>
+<td style="text-align: left;">Entalpía, extensiva <span class="math inline">\(\left[\mathrm{J}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(U\)</span></td>
+<td style="text-align: left;">Energía interna, extensiva <span class="math inline">\(\left[\mathrm{J}\right]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\underline{H}\)</span></td>
+<td style="text-align: left;">Entalpía molar <span class="math inline">\(\left[\mathrm{J}/\mathrm{mol}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\underline{U}\)</span></td>
+<td style="text-align: left;">Energía interna molar <span class="math inline">\(\left[\mathrm{J}/\mathrm{mol}\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\hat{H}\)</span></td>
+<td style="text-align: left;">Entalpía másica <span class="math inline">\(\left[\mathrm{J}/\mathrm{kg}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\hat{U}\)</span></td>
+<td style="text-align: left;">Energía interna másica <span class="math inline">\(\left[\mathrm{J}/\mathrm{kg}\right]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S\)</span></td>
+<td style="text-align: left;">Entropía, extensiva <span class="math inline">\(\left[\mathrm{J}/\mathrm{K}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(V\)</span></td>
+<td style="text-align: left;">Volumen, extensivo <span class="math inline">\(\left[\mathrm{m}^3\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\underline{S}\)</span></td>
+<td style="text-align: left;">Entropía molar <span class="math inline">\(\left[\mathrm{J}/\mathrm{K}\cdot\mathrm{mol}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\underline{V}\)</span></td>
+<td style="text-align: left;">Volumen molar <span class="math inline">\(\left[\mathrm{m}^3/\mathrm{mol}\right]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\hat{S}\)</span></td>
+<td style="text-align: left;">Entropía másica <span class="math inline">\(\left[\mathrm{J}/\mathrm{K}\cdot\mathrm{kg}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\hat{V}\)</span></td>
+<td style="text-align: left;">Volumen másico <span class="math inline">\(\left[\mathrm{m}^3/\mathrm{kg}\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(M\)</span></td>
+<td style="text-align: left;">Propiedad termodinámica extensiva cualquiera (e.g.&nbsp;<span class="math inline">\(G\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(M^{IG}\)</span></td>
+<td style="text-align: left;">Propiedad para gas ideal (e.g.&nbsp;<span class="math inline">\(A^{IG}\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\underline{M}\)</span>, <span class="math inline">\(\hat{M}\)</span></td>
+<td style="text-align: left;">Propiedad termodinámica intesiva cualquiera (e.g.&nbsp;<span class="math inline">\(\underline{U}\)</span>, <span class="math inline">\(\hat{H}\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(M^0\)</span></td>
+<td style="text-align: left;">Propiedad para gas ideal o para compuesto puro (e.g.&nbsp;<span class="math inline">\(G^0\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(M^{\mathrm{sat}}\)</span></td>
+<td style="text-align: left;">Propiedad en saturación (e.g.&nbsp;<span class="math inline">\(P^{\mathrm{sat}}\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(M^V\)</span>, <span class="math inline">\(M^L\)</span> o <span class="math inline">\(M^S\)</span></td>
+<td style="text-align: left;">Propiedad en fase gaseosa, líquida o sólida respectivamente.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(M_c\)</span></td>
+<td style="text-align: left;">Propiedad crítica (e.g.&nbsp;<span class="math inline">\(T_c\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(M_r\)</span></td>
+<td style="text-align: left;">Propiedad reducida (e.g.&nbsp;<span class="math inline">\(P_r\)</span>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-simbol-pure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1: Nomenclatura para compuestos puros
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -742,6 +911,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./mc_eos.html" class="pagination-link" aria-label="Modelos termodinámicos">
+        <span class="nav-page-text">Modelos termodinámicos</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -750,7 +928,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/IIQ2043/workbook/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/IIQ2043/workbook/blob/main/mc_glos.qmd" class="toc-action"><i class="bi bi-github"></i>Ver el código</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
