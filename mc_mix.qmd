@@ -1,0 +1,94 @@
+---
+title: "Conceptos básicos para mezclas"
+format: html
+filters:
+  - shinylive
+---
+
+Introducción WIP
+
+ <!--## Ecuaciones fundamentales para mezclas
+
+Introducción al potencial químico. Esto se podría cambiar a otro lugar para explicar gibbs de exceso.-->
+
+## Introducción a las propiedades de mezclado.
+
+En la mayoría de los casos, las propiedades termodinámicas de mezclas no son intuitivas. Adicionalmente, en mezclas se introducen una serie de conceptos nuevos que pueden ser confusos en un principio. La mayoría de estos conceptos estan sumamente relacionados entre si. Más imporante todavía es generar una visualización gráfica que nos permita conectar los contenidos, de manera que quede claro el significado de cada uno de ellos por separado.
+
+El volumen es un buen punto de partida, si bien no se comporta de forma intuitiva en todos los casos, es relativamente sencillo de imaginar. Pensemos en una mezcla de dos compuestos $(1)$ y $(2)$, cuyos volúmenes molares son $\underline{V}_1$ y $\underline{V}_2$ respectivamente. Digamos que llenamos un vaso con un $60\%$ molar del compuesto $(1)$ y el resto lo llenamos con el compuesto $(2)$.
+
+En el mejor de los casos, el volumen molar de la mezcla será la suma de las contribuciones independientes de cada muestra:
+
+$$
+\underline{V}^{\mathrm{ID}} = x_1\underline{V}_1 + x_2\underline{V}_2 = 0.6\underline{V}_1 + 0.4\underline{V}_2
+$$ {#eq-ideal_sol}
+
+A este resultado le llamamos **solución ideal** y, siempre que nos referimos a este caso, usaremos el superíndice $\mathrm{ID}$. Notar que los volúmenes molares $\underline{V}_1$ y $\underline{V}_2$ pueden ser reales, por lo tanto **solución ideal** no es lo mismo que **gas ideal**.
+
+Como te habrás dado cuenta a estas alturas, en la mayoría de las mezclas no existe **solución ideal**. Sin embargo, al igual que las propiedades residuales, exite un nombre para la diferencia entre el **valor real** de la mezcla y **la solución ideal**: Las **propiedades de exceso**.
+
+$$
+\underline{V}^E = \underline{V} - \underline{V}^\mathrm{ID} 
+$$
+
+Como veremos más adelante, la **solución ideal** no necesariamente tiene que ser la suma ponderara de las propiedades puras, por lo tanto, es mejor enteder la **solución ideal** como: **Una mezcla compuesta por especies que no interactuán entre ellas**.
+
+### Propiedad parcial molar
+
+<!-- Gráficos y más gráficos para unificar ppm con exceso, ver libro tester para sacar ideas de gráficos de exceso. Tester: figura 9.2 figura 9.5 // Dahm & Visco: figura 9.2 y figura 9.5 para dM/dn-->
+
+## Excepciones a la norma: Entropía
+
+Ahora que entendemos las propiedades de mezclado, debemos abordar las singularidades de algunas propiedades, en específico, **la entropía**. Tanto para el volumen ($V$), la entalpía ($H$) y la energía interna ($U$), la **solución ideal será la suma ponderada de las propiedades puras** (ver [ecuación @eq-ideal_sol]). Sin embargo, esto **no** aplica para la entropía. Para explicar en detalle el porqué, se necesitaría aplicar mecánica estadística, lo que se escapa del alcance del curso. La **solución ideal** para la entropía, se ve de la siguiente manera:
+
+$$
+\underline{S}^\mathrm{ID}=x_1\underline{S}_1+x_2\underline{S}_2 - Rx_1\ln\left(x_1\right) - Rx_2\ln\left(x_2\right)
+$$
+
+En la sección 9.2 del libro *<a href="https://bmdigitales-bibliotecas-uc-cl.pucdechile.idm.oclc.org/html5/FUNDAMENTALS%20OF%20CHEMICAL%20ENGINEERING%20THERMODYNAMICS%20K.%20D.%20DAHM/">Fundamentals of Chemical Engineering Thermodynamics</a>* se encuentra una explicación un poco más detallada del origen de este resultado. A nosotros nos interesa princpialmente las concecuencias de esta propiedad.
+
+Recordemos que $\underline{G}$ puede ser escrita como $\underline{G}=\underline{H}-T\underline{S}$, lo mismo puede ser dicho para la **solución ideal**. Entonces:
+
+$$
+\underline{G}^\mathrm{ID}=\underline{H}^\mathrm{ID}-T\underline{S}^\mathrm{ID}
+$$
+
+$$
+\underline{G}^\mathrm{ID} = \left[x_1\underline{H}_1+x_2\underline{H}_2\right] - T\left[x_1\underline{S}_1+x_2\underline{S}_2 - Rx_1\ln\left(x_1\right) - Rx_2\ln\left(x_2\right)\right]
+$$
+
+Ya que $x_i\underline{G}_i = x_i\left(\underline{H}_i-T\underline{S}_i\right)$, se puede simplificar y llegar a la expresión de Gibbs en **solución ideal**.
+
+$$
+\underline{G}^\mathrm{ID} = x_1\underline{G}_1 + x_2\underline{G}_2 + RTx_1\ln\left(x_1\right) + RTx_2\ln\left(x_2\right) 
+$$
+
+O de manera generalizada para $n$ compuestos,
+
+$$
+\underline{G}^\mathrm{ID} = \sum^n_ix_i\underline{G}_i+RT\sum^n_ix_i\ln\left(x_i\right)
+$$ {#eq-gibbs_ID}
+
+Si $\underline{G}^\mathrm{ID}$ es distinto, entonces $\underline{G}^E$ también lo es. Esta expresión será relevante a futuro, pero también nos permite introducir el siguiente concepto.
+
+## Cambio de mezclado o propiedad de Mezclado
+
+En termodinámica siempre vamos a querer alguna referencia simple que nos indique cuánto cambia un sistema en consecuencia de algo. En el caso de mezclas, queremos saber cuánto cambia alguna propiedad desde su estado puro producto del mezclado. Para esto, introducimos otro concepto: los **cambios de mezclado**. Para una propiedad cualquiera:
+
+$$
+\Delta \underline{M}^\mathrm{MIX}=\underline{M}-\left(x_1\underline{M}_1+x_2\underline{M}_2\right)
+$$
+
+A simple vista, parece ser lo mismo que las **propiedades de exceso**. La gran diferencia es que en este caso, $\underline{M}$ puede ser la entropía ($\underline{S}$) o la energía libre de Gibbs ($G$). Esto nos permite definir algunos detalles particulares en mezclas, así como poder diferenciar entre el cambio en la propiedad producto del mezclado y la condición de **solución ideal**.
+
+Para cerrar, una tabla compartativa entre las **propiedades de exceso** y los **cambios de mezclado**. Además se agrega una columna adicional mostrando la diferencia entre $\Delta\underline{M}^\mathrm{MIX}$ y $\underline{M}^E$, que se conoce como el **cambio de mezclado para soluciones ideales $\Delta\underline{M}^\mathrm{MIX}_\mathrm{ID}$**.
+
+| Propiedad: <br> $\underline{M}$ | Propiedad de exceso: <br> $\underline{M}^E$ | Cambio de mezclado: $\Delta\underline{M}^\mathrm{MIX}$ | Cambio de mezclado para solución ideal: $\Delta\underline{M}^\mathrm{MIX}_\mathrm{ID}$ |
+|:-:|:-:|:-:|:-:|
+| Volumen | $$\underline{V}^E=\underline{V}-\sum^n_ix_i\underline{V}_i$$ | $$\underline{V}^\mathrm{MIX}=\underline{V}-\sum^n_ix_i\underline{V}_i$$ | $$0$$ |
+| Entalpía | $$\underline{H}^E=\underline{H}-\sum^n_ix_i\underline{H}_i$$ | $$\underline{H}^\mathrm{MIX}=\underline{H}-\sum^n_ix_i\underline{H}_i$$ | $$0$$ |
+| Energía interna | $$\underline{U}^E=\underline{U}-\sum^n_ix_i\underline{U}_i$$ | $$\underline{U}^\mathrm{MIX}=\underline{U}-\sum^n_ix_i\underline{U}_i$$ | $$0$$ |
+| Entropía | $$\underline{S}^E =\underline{S}-\left[\sum^n_ix_i\underline{S}_i-R\sum^n_ix_i\ln\left(x_i\right)\right]$$ | $$\underline{S}^\mathrm{MIX}=\underline{S}-\sum^n_ix_i\underline{S}_i$$ | $$-R\sum^n_ix_i\ln\left(x_i\right)$$ |
+| Energía de Gibbs | $$\underline{G}^E =\underline{G}-\left[\sum^n_ix_i\underline{G}_i+RT\sum^n_ix_i\ln\left(x_i\right)\right]$$ | $$\underline{G}^\mathrm{MIX}=\underline{G}-\sum^n_ix_i\underline{G}_i$$ | $$RT\sum^n_ix_i\ln\left(x_i\right)$$ |
+
+: Resumen de las propiedades de mezclado {#tbl-mix_excess .hover}
