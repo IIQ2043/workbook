@@ -92,3 +92,7 @@ Para cerrar, una tabla compartativa entre las **propiedades de exceso** y los **
 | Energía de Gibbs | $$\underline{G}^E =\underline{G}-\left[\sum^n_ix_i\underline{G}_i+RT\sum^n_ix_i\ln\left(x_i\right)\right]$$ | $$\underline{G}^\mathrm{MIX}=\underline{G}-\sum^n_ix_i\underline{G}_i$$ | $$RT\sum^n_ix_i\ln\left(x_i\right)$$ |
 
 : Resumen de las propiedades de mezclado {#tbl-mix_excess .hover}
+
+## prueba
+
+<iframe src="https://learncheme.github.io/demos/TernaryPhaseDiagramWithPhaseEnvelope/index.html" width="1000" height="800"></iframe>
